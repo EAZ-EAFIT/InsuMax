@@ -4,6 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Wishlist;
+use App\Models\Notification;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Collection;
 
 class Customer extends Model
 {
@@ -17,6 +22,9 @@ class Customer extends Model
      * $this->attributes['address'] - string - contains the customer address
      * $this->attributes['created_at'] - string - contains the timestamp of creation
      * $this->attributes['updated_at'] - string - contains the timestamp of updates
+     * this->orders - Order[] - contains the associated orders
+     * this->wishlists - Wishlist[] - contains the associated wishlists
+     * this->notifications - Notification[] - contains the associated notifications
      */
     protected $fillable = ['username', 'password', 'name', 'email', 'address'];
 
@@ -94,5 +102,50 @@ class Customer extends Model
     public function getUpdatedAt(): string
     {
         return $this->attributes['updated_at'];
+    }
+
+    public function orders(): HasMany
+    {
+        return $this->hasMany(Order::class);
+    }
+
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function setOrders(Collection $orders): void
+    {
+        $this->orders = $orders;
+    }
+
+    public function wishlists(): HasMany
+    {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function getWishlists(): Collection
+    {
+        return $this->wishlists;
+    }
+
+    public function setWishlists(Collection $wishlists): void
+    {
+        $this->wishlists = $wishlists;
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function setNotifications(Collection $notifications): void
+    {
+        $this->notifications = $notifications;
     }
 }
