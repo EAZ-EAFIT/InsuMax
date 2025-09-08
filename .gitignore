@@ -1,0 +1,44 @@
+# Laravel
+/vendor
+/node_modules
+/public/storage
+/storage/*.key
+.env
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+/.idea
+/.vscode
+/.phpunit.cache
+
+# Laravel caches
+bootstrap/cache/*
+!bootstrap/cache/.gitignore
+
+# Logs and temp files
+storage/logs/*
+storage/framework/*
+!storage/framework/.gitignore
+!storage/logs/.gitignore
+
+# Environment files
+.env.backup
+.env.local
+.env.testing
+.env.*
+
+# Composer PHAR
+composer.phar
+
+# NPM/Yarn
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Mac/Linux system files
+.DS_Store
+Thumbs.db
+
+# SFTP/FTP configs
+*.sublime-workspace
+*.sublime-project
