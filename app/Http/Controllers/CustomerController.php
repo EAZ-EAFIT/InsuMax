@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Customer;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use \Illuminate\Http\RedirectResponse;
 
 class CustomerController extends Controller
 {
@@ -34,7 +34,7 @@ class CustomerController extends Controller
     public function save(Request $request): RedirectResponse
     {
         Customer::validate($request);
-        
+
         Customer::create([
             'username' => $request->username,
             'password' => $request->password,
