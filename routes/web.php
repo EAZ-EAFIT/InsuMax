@@ -16,3 +16,4 @@ Route::get('/item/create', $ITEM_CONTROLLER_PATH.'@create')->name('item.create')
 Route::post('/item/save', $ITEM_CONTROLLER_PATH.'@save')->name('item.save');
 Route::get('/item/{id}', $ITEM_CONTROLLER_PATH.'@show')->name('item.show');
 Route::delete('/item/delete/{id}', $ITEM_CONTROLLER_PATH.'@delete')->name('item.delete');
+
