@@ -43,6 +43,16 @@ class Item extends Model
         return $this->attributes['price'];
     }
 
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
     public function setQuantity(int $quantity): void
     {
         $this->attributes['quantity'] = $quantity;
