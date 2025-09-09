@@ -4,6 +4,7 @@
 /public/storage
 /storage/*.key
 .env
+.gitignore
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
