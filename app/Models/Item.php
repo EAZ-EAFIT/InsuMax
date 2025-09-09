@@ -20,7 +20,7 @@ class Item extends Model
      */
     protected $fillable = ['quantity', 'price'];
 
-    public static function validate($request): void
+    public static function validate(Request $request): void
     {
         $request->validate([
             'quantity' => 'required|integer|min:1',
@@ -48,7 +48,7 @@ class Item extends Model
         $this->attributes['quantity'] = $quantity;
     }
 
-    public function setPrice(float $price): void
+    public function setPrice(int $price): void
     {
         $this->attributes['price'] = $price;
     }
