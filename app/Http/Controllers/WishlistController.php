@@ -17,7 +17,7 @@ class WishlistController extends Controller
         return view('item.index')->with('viewData', $viewData);
     }
 
-    public function show(string $id): View
+    public function show(int $id): View
     {
         $viewData = [];
         $wishlist = Wishlist::findOrFail($id);
@@ -42,7 +42,7 @@ class WishlistController extends Controller
         return back();
     }
 
-    public function delete(string $id): RedirectResponse
+    public function delete(int $id): RedirectResponse
     {
         Wishlist::destroy($id);
 
