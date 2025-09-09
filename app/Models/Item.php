@@ -38,7 +38,7 @@ class Item extends Model
         return $this->attributes['quantity'];
     }
 
-    public function getPrice(): float
+    public function getPrice(): int
     {
         return $this->attributes['price'];
     }
