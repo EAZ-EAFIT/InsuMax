@@ -79,6 +79,6 @@ class Wishlist extends Model
 
     public function setProducts(Collection $products): void
     {
-        $this->products()->sync($products);
+        $this->products()->sync($products->pluck('id')->toArray());
     }
 }
