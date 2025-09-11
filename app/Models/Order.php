@@ -121,6 +121,7 @@ class Order extends Model
     public static function updateOrder(int $id, array $data): bool
     {
         $order = self::find($id);
+
         return $order ? $order->update($data) : false;
     }
 
@@ -133,7 +134,7 @@ class Order extends Model
     {
         $this->setHasShipped(false);
         $this->save();
-        
+
     }
 
     public function calculateTotal(): int
@@ -143,6 +144,7 @@ class Order extends Model
             $total += $item->getPrice() * $item->getQuantity();
         }
         $this->setTotal($total);
+
         return $total;
     }
 
