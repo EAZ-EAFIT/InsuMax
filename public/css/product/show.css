@@ -1,0 +1,96 @@
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 0;
+}
+
+.product-container {
+  height: 530px;
+  width: 850px;
+  border-radius: 40px;
+  background: linear-gradient(to bottom, #2C3B4D 0%, #1B2632 50%);
+  overflow: hidden;
+  margin: 50px 0;
+}
+
+.product-container img {
+  height: 100%;
+  object-fit: cover;
+  width: 40%;
+}
+
+.product-details {
+  padding: 10px 20px;
+  width: 100%;
+  gap: 50px;
+}
+
+.qty-price-container {
+  gap: 30px;
+  font-size: 20px;
+}
+
+.qty-container {
+  background-color: #EEE9DF;
+  border-radius: 8px;
+  width: 45px;
+  height: 30px;
+  margin: 0 5px;
+}
+
+.qty-container input{
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  background: none;
+  border: none;
+}
+
+.qty-container input:focus {
+  outline: none;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+.qty-btn {
+  background-color: #A35139;
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.qty-btn svg {
+  height: 18px;
+}
+
+.btn {
+  padding: 10px 70px;
+  background-color: #A35139;
+  color: #EEE9DF;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.heart-btn {
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+  margin-right: 5px;
+}
