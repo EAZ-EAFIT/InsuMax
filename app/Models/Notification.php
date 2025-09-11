@@ -108,6 +108,7 @@ class Notification extends Model
     public static function updateNotification(int $id, array $data): bool
     {
         $notification = self::find($id);
+
         return $notification ? $notification->update($data) : false;
     }
 
