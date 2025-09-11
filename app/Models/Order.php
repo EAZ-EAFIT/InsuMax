@@ -148,7 +148,6 @@ class Order extends Model
 
     public function pay(): void
     {
-        // Lógica de pago (puedes expandir según el tipo de pago)
         $this->setHasShipped(true);
         $this->save();
     }
