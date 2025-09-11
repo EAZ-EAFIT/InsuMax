@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
 use \Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Http\Request;
 
 class Wishlist extends Model
 {
@@ -18,7 +19,7 @@ class Wishlist extends Model
      * this->customer - Customer - contains the associated customer
      * this->products - Product[] - contains the associated products
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'customer_id'];
 
     public static function validate(Request $request): void
     {
@@ -77,8 +78,18 @@ class Wishlist extends Model
         return $this->products;
     }
 
+    public function addProduct(Product $product): void
+    {
+        $this->products()->attach($product->getId());
+    }
+
+    public function removeProduct(Product $product): void
+    {
+        $this->products()->detach($product->getId());
+    }
+
     public function setProducts(Collection $products): void
     {
-        $this->products()->sync($products);
+        $this->products()->sync($products->pluck('id')->toArray());
     }
 }

@@ -139,6 +139,6 @@ class Product extends Model
 
     public function setWishlists($wishlists): void
     {
-        $this->wishlists()->sync($wishlists);
+        $this->wishlists()->sync($wishlists->pluck('id')->toArray());
     }
 }

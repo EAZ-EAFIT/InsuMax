@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Http\Request;
 
 class Item extends Model
 {
@@ -68,12 +69,12 @@ class Item extends Model
         return $this->belongsTo(Order::class);
     }
 
-    public function getOrder(): Collection
+    public function getOrder(): Order
     {
         return $this->order;
     }
 
-    public function setOrder(Collection $order): void
+    public function setOrder(Order $order): void
     {
         $this->order = $order;
     }
@@ -83,13 +84,13 @@ class Item extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function getProduct(): Collection
+    public function getProduct(): Product
     {
         return $this->product;
     }
 
-    public function setProduct(Collection $product): void
+    public function setProduct(Product $product): void
     {
-        $this->products = $product;
+        $this->product = $product;
     }
 }
