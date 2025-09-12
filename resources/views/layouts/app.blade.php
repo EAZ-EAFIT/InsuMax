@@ -16,9 +16,11 @@
 </head>
 <body>
   <header class="flex light-blue-bg white">
-    <h1 class="logo white">
-    {{ __('home/index.logoStart') }}<span class="logo-span">{{ __('home/index.logoEnd') }}</span>
-    </h1>
+    <a href="{{ route('product.index') }}">
+      <h1 class="logo white">
+      {{ __('home/index.logoStart') }}<span class="logo-span">{{ __('home/index.logoEnd') }}</span>
+      </h1>
+    </a>
 
     <nav class="flex center">
       <div class="nav-container flex center">

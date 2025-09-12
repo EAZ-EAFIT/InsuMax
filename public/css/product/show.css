@@ -94,3 +94,109 @@ input[type=number] {
   border-radius: 15px;
   margin-right: 5px;
 }
+
+@media (max-width: 1200px) {
+  .product-container {
+    width: 90%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .product-container img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .product-details {
+    gap: 30px;
+    padding: 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .qty-price-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 10px 50px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 30px 0;
+  }
+
+  .product-container {
+    border-radius: 20px;
+  }
+
+  .product-details {
+    gap: 20px;
+  }
+
+  .product-details h1 {
+    font-size: 24px;
+  }
+
+  .product-details p {
+    font-size: 16px;
+  }
+
+  .qty-container {
+    width: 40px;
+    height: 28px;
+  }
+
+  .qty-container input {
+    font-size: 16px;
+  }
+
+  .btn {
+    font-size: 16px;
+    padding: 8px 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-container img {
+    height: 200px;
+  }
+
+  .product-details h1 {
+    font-size: 20px;
+  }
+
+  .product-details p {
+    font-size: 14px;
+  }
+
+  .qty-price-container {
+    font-size: 16px;
+  }
+
+  .qty-btn {
+    width: 25px;
+    height: 25px;
+  }
+
+  .qty-btn svg {
+    height: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 30px;
+    border-radius: 10px;
+  }
+
+  .heart-btn {
+    width: 25px;
+    height: 25px;
+    margin-right: 3px;
+  }
+}
