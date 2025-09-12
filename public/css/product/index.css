@@ -1,0 +1,176 @@
+:root {
+  --brown: #A35139;
+  --yellow: #FFB162;
+  --gray: #C9C1B1;
+  --white: #EEE9DF;
+  --light-blue: #2C3B4D;
+  --dark-blue: #1B2632;
+}
+
+body {
+  position: relative;
+}
+
+header {
+  z-index: 10;
+}
+
+.search-container {
+  background: linear-gradient(to top, var(--brown) 0%, var(--yellow) 80%, var(--white) 100%);
+  position: absolute;
+  top: 0;
+  height: 400px;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  padding-bottom: 100px;
+}
+
+.search-box {
+  width: 230px;
+  height: 40px;
+  border-radius: 10px;
+}
+
+.search-box svg {
+  margin-right: auto;
+  height: 25px;
+}
+
+.search-box input {
+  height: 100%;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--light-blue);
+  font-size: 18px;
+}
+
+.search-box input::placeholder {
+  color: var(--brown);
+  opacity: 0.9;
+}
+
+.search-box input:focus {
+  outline: none;
+}
+
+.products-container {
+  margin-top: 400px;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 20px 50px;
+  gap: 50px;
+}
+
+.product-card {
+  border-radius: 20px;
+  overflow: hidden;
+  height: 490px;
+}
+
+.product-card-img {
+  overflow: hidden;
+}
+
+.product-card-img img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.product-card-details {
+  justify-content: space-between;
+  padding: 5% 10%;
+}
+
+.product-text {
+  gap: 10px;
+  font-size: 24px;
+}
+
+.btn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:hover {
+  background-color: var(--white);
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 1024px) {
+  .products-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px 30px;
+  }
+
+  .product-text {
+    font-size: 20px;
+  }
+
+  .btn {
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .products-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    padding: 0 30%;
+    margin-top: 300px;
+  }
+
+  .product-card-details {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px 20px;
+  }
+
+  .product-text {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search-container {
+    height: 300px;
+    padding-bottom: 60px;
+  }
+
+  .search-box {
+    width: 180px;
+    height: 35px;
+  }
+
+  .search-box input {
+    font-size: 16px;
+  }
+
+  .products-container {
+    gap: 20px;
+    padding: 15px;
+  }
+
+  .product-card {
+   height: 400px;
+  }
+
+  .product-text {
+    font-size: 16px;
+  }
+}

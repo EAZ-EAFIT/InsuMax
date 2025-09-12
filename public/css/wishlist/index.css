@@ -1,0 +1,167 @@
+.title-container {
+  justify-content: space-between;
+  margin: 50px 40px 0px 40px;
+}
+
+.title-container h1 {
+  font-size: 38px;
+}
+
+.btn-dark-blue {
+  gap: 10px;
+}
+
+.btn-dark-blue svg{
+  height: 20px;
+  width: 20px;
+}
+
+h2 {
+  margin: 80px 40px 0px 40px;
+  padding-bottom: 15px;
+}
+
+h2, .product-container {
+  border-bottom: 2px solid;
+  border-image: linear-gradient(to right, #1B2632 50%, #FFB16280 100%) 1;
+}
+
+.product-container {
+  padding: 20px 50px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+.product-name {
+  font-size: 18px;
+}
+
+.end-options {
+  justify-content: space-between;
+  margin: 40px 40px;
+}
+
+.btn-delete {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.btn-delete:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .product-container {
+    padding: 15px 20px;
+  }
+
+  img {
+    height: 130px;
+    width: 130px;
+  }
+
+  .end-options {
+    margin: 30px 40px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .title-container {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
+
+  .product-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    padding: 15px;
+    margin: 0 40px;
+  }
+
+  .product-name {
+    font-size: 16px;
+  }
+
+  img {
+    height: 110px;
+    width: 110px;
+  }
+
+  .btn-dark-blue {
+    padding: 8px 15px;
+    font-size: 14px;
+  }
+
+  .btn-delete {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title-container {
+    margin: 20px 10px;
+    gap: 15px;
+  }
+
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 0 40px;
+  }
+
+  .product-container {
+    padding: 10px;
+    gap: 10px;
+    margin: 0 40px;
+  }
+
+  img {
+    height: 90px;
+    width: 90px;
+  }
+
+  .product-name {
+    font-size: 14px;
+  }
+
+  .end-options {
+    margin: 20px 40px;
+    gap: 15px;
+  }
+
+  .btn-dark-blue, .btn-delete {
+    font-size: 12px;
+    padding: 8px 15px;
+    border-radius: 12px;
+  }
+}

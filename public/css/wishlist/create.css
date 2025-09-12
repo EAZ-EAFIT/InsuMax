@@ -1,0 +1,33 @@
+.title {
+  margin: 50px 50px;
+}
+
+.form-container {
+  height: 500px;
+}
+
+form {
+  border: 2px solid #1B2632;
+  height: 350px;
+  width: 450px;
+  gap: 50px;
+  border-radius: 20px;
+}
+
+label {
+  font-size: 24px;
+}
+
+input {
+  background: #EEE9DF;
+  border: 1px solid #1B2632;
+  border-radius: 7px;
+  width: 200px;
+  height: 30px;
+  text-align: center;
+  color: #1B2632;
+}
+
+input:focus {
+  outline: none;
+}

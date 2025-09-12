@@ -1,0 +1,145 @@
+body {
+  display: grid;
+  min-height: 100dvh;
+  grid-template-rows: auto 1fr auto;
+}
+
+header {
+ padding: 10px 50px;
+ border-bottom-left-radius: 40px;
+ border-bottom-right-radius: 40px;
+}
+
+.logo {
+  font-size: 38px;
+}
+
+.logo-span {
+  font-size: 46px;
+}
+
+nav {
+  margin-left: auto;
+}
+
+a {
+  color: #EEE9DF;
+  font-size: 20px;
+}
+
+a svg {
+  height: 18px;
+}
+
+.nav-container {
+  gap: 15px;
+  border-right: 2px solid #EEE9DF;
+  padding-right: 20px;
+}
+
+.login-container {
+  gap: 15px;
+  margin-left: 20px;
+}
+
+footer {
+  padding: 30px 0;
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 30px;
+  }
+
+  .logo-span {
+    font-size: 36px;
+  }
+
+  nav a {
+    font-size: 18px;
+  }
+
+  .nav-container {
+    gap: 10px;
+    padding-right: 15px;
+  }
+
+  .login-container {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px 20px;
+  }
+
+  nav {
+    margin-left: 0;
+    margin-top: 15px;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .nav-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    border-right: none;
+    padding-right: 0;
+    gap: 20px;
+  }
+
+  .login-container {
+    margin-left: 0;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  nav a {
+    font-size: 16px;
+  }
+
+  a svg {
+    height: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .logo-span {
+    font-size: 26px;
+  }
+
+  nav {
+    gap: 15px;
+  }
+
+  .nav-container {
+    gap: 12px;
+  }
+
+  .login-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  nav a {
+    font-size: 14px;
+  }
+
+  a svg {
+    height: 14px;
+  }
+
+  footer {
+    padding: 20px 10px;
+    text-align: center;
+  }
+}
