@@ -108,39 +108,16 @@ class Order extends Model
         return $this->hasMany(Item::class);
     }
 
-    public static function createOrder(array $data): self
-    {
-        return self::create($data);
-    }
-
-    public static function getOrder(int $id): ?self
-    {
-        return self::find($id);
-    }
-
-    public static function updateOrder(int $id, array $data): bool
-    {
-        $order = self::find($id);
-
-        return $order ? $order->update($data) : false;
-    }
-
-    public static function deleteOrder(int $id): bool
-    {
-        return self::destroy($id) > 0;
-    }
-
     public function cancelOrder(): void
     {
         $this->setHasShipped(false);
         $this->save();
-
     }
 
     public function calculateTotal(): int
     {
         $total = 0;
-        foreach ($this->items as $item) {
+        foreach ($this->getItems() as $item) {
             $total += $item->getPrice() * $item->getQuantity();
         }
         $this->setTotal($total);

@@ -19,13 +19,6 @@ return new class extends Migration
             $table->foreignId('customer_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
-
-        Schema::create('order_item', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('order_id')->constrained()->onDelete('cascade');
-            $table->foreignId('item_id')->constrained()->onDelete('cascade');
-            $table->timestamps();
-        });
     }
 
     /**
@@ -33,7 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('order_item');
         Schema::dropIfExists('orders');
     }
 };
