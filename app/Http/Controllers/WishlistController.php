@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wishlist;
-use App\Models\User;
 use App\Models\Product;
-use Illuminate\Support\Collection;
+use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,7 +36,7 @@ class WishlistController extends Controller
         return view('wishlist.show')->with('viewData', $viewData);
     }
 
-    public function addOptions(int $productId): View | RedirectResponse
+    public function addOptions(int $productId): View|RedirectResponse
     {
         // TEST USER, ALWAYS THE SAME
         $user = User::findOrFail(1);
