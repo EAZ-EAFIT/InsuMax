@@ -22,7 +22,6 @@ class User extends Authenticatable
      * $this->attributes['email_verified_at'] - timestamp - contains the user email verification date
      * $this->attributes['password'] - string - contains the user password
      * $this->attributes['remember_token'] - string - contains the user password
-     * $this->attributes['username'] - string - contains the user username
      * $this->attributes['address'] - string - contains the user address
      * $this->attributes['balance'] - int - contains the user balance
      * $this->attributes['role'] - string - contains the user role (customer or admin)
@@ -100,16 +99,6 @@ class User extends Authenticatable
     public function setPassword(string $password): void
     {
         $this->attributes['password'] = $password;
-    }
-
-    public function getUsername(): string
-    {
-        return $this->attributes['username'];
-    }
-
-    public function setUsername(string $username): void
-    {
-        $this->attributes['username'] = $username;
     }
 
     public function getAddress(): string
