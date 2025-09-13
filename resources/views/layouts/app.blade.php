@@ -60,12 +60,12 @@
 
       <div class="login-container flex">
         @guest
-        <a class="nav-link active" href="#">{{ __('layout/layout.login') }}</a>
-        <a class="nav-link active" href="#">{{ __('layout/layout.register') }}</a>
+        <a class="nav-link active" href="{{ route('login') }}">{{ __('layout/layout.login') }}</a>
+        <a class="nav-link active" href="{{ route('register') }}">{{ __('layout/layout.register') }}</a>
         @else
-        <form id="logout" action="#" method="POST">
+        <form id="logout" action="{{ route('logout') }}" method="POST">
           @csrf
-          <a role="button" onclick="document.getElementById('logout').submit();">
+          <a class="logout-btn" onclick="document.getElementById('logout').submit();">
             {{ __('layout/layout.logout') }}
           </a>
         </form>

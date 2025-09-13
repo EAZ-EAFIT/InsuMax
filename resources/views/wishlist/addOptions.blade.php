@@ -31,7 +31,7 @@
     </div>
 
   @empty
-  <a href="{{ route('wishlist.create', $viewData['customer']->getId()) }}" class="btn btn-dark-blue flex center">
+  <a href="{{ route('wishlist.create', $viewData['user']->getId()) }}" class="btn btn-dark-blue flex center">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
       <path d="M24.9998 45.8332C36.5058 45.8332 45.8332 36.5058 45.8332 24.9998C45.8332 13.4939 36.5058 4.1665 24.9998 4.1665C13.4939 4.1665 4.1665 13.4939 4.1665 24.9998C4.1665 36.5058 13.4939 45.8332 24.9998 45.8332Z" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M25 16.6665V33.3332" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

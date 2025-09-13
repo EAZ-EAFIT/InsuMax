@@ -16,10 +16,10 @@ class Wishlist extends Model
      * $this->attributes['name'] - string - contains the wishlist name
      * $this->attributes['created_at'] - string - contains the timestamp of creation
      * $this->attributes['updated_at'] - string - contains the timestamp of updates
-     * this->customer - Customer - contains the associated customer
+     * this->user - User - contains the associated user
      * this->products - Product[] - contains the associated products
      */
-    protected $fillable = ['name', 'customer_id'];
+    protected $fillable = ['name', 'user_id'];
 
     public static function validate(Request $request): void
     {
@@ -53,19 +53,19 @@ class Wishlist extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function customer(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
-    public function getCustomer(): Customer
+    public function getUser(): User
     {
-        return $this->customer;
+        return $this->user;
     }
 
-    public function setCustomer(Customer $customer): void
+    public function setUser(User $user): void
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     public function products(): BelongsToMany
