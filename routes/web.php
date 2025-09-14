@@ -7,6 +7,7 @@ $CUSTOMER_CONTROLLER_PATH = 'App\Http\Controllers\CustomerController';
 $ITEM_CONTROLLER_PATH = 'App\Http\Controllers\ItemController';
 $WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\WishlistController';
 $PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\ProductController';
+$ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
 
 Route::get('/', $HOME_CONTROLLER_PATH.'@index')->name('home.index');
 
@@ -33,3 +34,11 @@ Route::delete('/wishlist/delete/{id}', $WISHLIST_CONTROLLER_PATH.'@delete')->nam
 
 Route::get('/product', $PRODUCT_CONTROLLER_PATH.'@index')->name('product.index');
 Route::get('/product/{id}', $PRODUCT_CONTROLLER_PATH.'@show')->name('product.show');
+
+Route::get('/order', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
+Route::get('/order/create', $ORDER_CONTROLLER_PATH.'@create')->name('order.create');
+Route::post('/order/save', $ORDER_CONTROLLER_PATH.'@save')->name('order.save');
+Route::get('/order/{id}', $ORDER_CONTROLLER_PATH.'@show')->name('order.show');
+Route::delete('/order/delete/{id}', $ORDER_CONTROLLER_PATH.'@delete')->name('order.delete');
+Route::post('/order/cancel/{id}', $ORDER_CONTROLLER_PATH.'@cancel')->name('order.cancel');
+Route::post('/order/pay/{id}', $ORDER_CONTROLLER_PATH.'@pay')->name('order.pay');
