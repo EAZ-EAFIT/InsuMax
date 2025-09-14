@@ -116,4 +116,22 @@ class Notification extends Model
     {
         return self::destroy($id) > 0;
     }
+
+    public function notify(): void
+    {
+        $customer = $this->getCustomer();
+
+        $toEmail = $customer->getEmail();
+        $subject = 'Product Notification';
+        $message = 'Hello '.$customer->getName().",\n\n"
+            .'This is a reminder for the product: '.$this->getProduct()->getName().".\n"
+            .'Quantity: '.$this->getQuantity()."\n"
+            .'Notification Date: '.$this->getNotificationDate()."\n\n"
+            .'Thank you for using our service!';
+
+        \Mail::raw($message, function ($mail) use ($toEmail, $subject) {
+            $mail->to($toEmail)
+                ->subject($subject);
+        });
+    }
 }
