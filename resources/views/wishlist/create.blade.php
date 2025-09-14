@@ -10,7 +10,7 @@
     @csrf
     @method('POST')
     <label for="name">{{ __('wishlist/create.name') }}</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" value="{{ old('name') }}" required>
     <button type="submit" class="btn-dark-blue">{{ __('wishlist/create.add') }}</button>
   </form>
 </div>
