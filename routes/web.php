@@ -44,12 +44,3 @@ Route::middleware('admin')->group(function () {
 });
 
 Auth::routes();
-
-
-
-// Rutas de prueba para Notification
-Route::get('/test', $PRODUCT_CONTROLLER_PATH.'@test')->name('notification.create');
-Route::get('/test/{id}', $PRODUCT_CONTROLLER_PATH.'@test2')->name('notification.set');
-Route::post('/test/confirmation', $PRODUCT_CONTROLLER_PATH.'@test3')->name('notification.save');
-Route::get('/verNotifs', $PRODUCT_CONTROLLER_PATH.'@test4')->name('notification.index');
-Route::get('/edit', $PRODUCT_CONTROLLER_PATH.'@test5')->name('notification.edit');
