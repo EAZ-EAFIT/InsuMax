@@ -33,7 +33,7 @@
           {{ __('layout/layout.products') }}
         </a>
 
-        <a href="#">
+        <a href="{{ route('notification.index') }}">
           <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
             <path d="M21.75 9.66669C21.75 7.74387 20.9862 5.8998 19.6265 4.54016C18.2669 3.18052 16.4228 2.41669 14.5 2.41669C12.5772 2.41669 10.7331 3.18052 9.37348 4.54016C8.01384 5.8998 7.25 7.74387 7.25 9.66669C7.25 18.125 3.625 20.5417 3.625 20.5417H25.375C25.375 20.5417 21.75 18.125 21.75 9.66669Z" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M16.5905 25.375C16.3781 25.7412 16.0731 26.0452 15.7063 26.2565C15.3394 26.4678 14.9235 26.5791 14.5001 26.5791C14.0767 26.5791 13.6608 26.4678 13.2939 26.2565C12.927 26.0452 12.6221 25.7412 12.4097 25.375" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

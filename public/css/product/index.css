@@ -57,7 +57,8 @@ header {
 }
 
 .products-container {
-  margin-top: 400px;
+  margin-top: 380px;
+  margin-bottom: 50px;
   grid-template-columns: 1fr 1fr 1fr;
   padding: 20px 50px;
   gap: 50px;
@@ -81,6 +82,7 @@ header {
 
 .product-card-details {
   justify-content: space-between;
+  gap: 12px;
   padding: 5% 10%;
 }
 

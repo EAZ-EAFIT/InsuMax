@@ -3,7 +3,7 @@
 return [
     'title' => 'Your Wishlists',
     'subtitle' => 'Your wishlists',
-    'create' => 'Create wishlist',
+    'create' => 'Create a wishlist',
     'remove' => 'Remove',
     'add' => 'Add products to cart',
     'delete' => 'Delete wishlist',

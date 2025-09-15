@@ -45,7 +45,7 @@
     </svg>
     {{ __('wishlist/index.add') }}
   </a>
-  <form action="{{ route('wishlist.delete', $wishlist->getId()) }}" method="POST" style="display:inline;">
+  <form action="{{ route('wishlist.delete', $wishlist->getId()) }}" method="POST">
     @csrf
     @method('DELETE')
     <button type="submit" class="btn-delete brown-bg white">{{ __('wishlist/index.delete') }}</button>

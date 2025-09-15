@@ -1,0 +1,82 @@
+main h1 {
+  margin: 50px 50px;
+}
+
+.title-container {
+  margin: 0 50px;
+}
+
+.grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  margin-bottom: 15px;
+}
+
+.notification-container {
+  border: 1px solid var(--dark-blue);
+  margin: 0 50px 50px 50px;
+  padding: 20px 0;
+  border-radius: 10px;
+}
+
+.product-container {
+  gap: 10px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+main span, 
+main p,
+main a,
+main button {
+  font-size: 16px;
+}
+
+.actions-wrapper {
+  margin: 20px 0 10px 0;
+}
+
+.actions-container {
+  gap: 50px;
+  align-self: flex-end;
+  margin-right: 50px;
+}
+
+.delete-btn {
+  font-family: "Raleway", sans-serif;
+  background: none;
+  border: none;
+  font-weight: 300;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.delete-btn svg {
+  height: 20px;
+  width: 20px;
+}
+
+.add-cart-btn {
+  margin-right: auto;
+  margin-left: 30px;
+  gap: 10px;
+}
+
+.add-notification-btn {
+  font-family: "Raleway", sans-serif;
+  font-size: 18px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: 50px;
+  gap: 10px;
+}
+
+.add-notification-btn svg,
+.add-cart-btn svg{
+  height: 20px;
+  width: 20px;
+}
