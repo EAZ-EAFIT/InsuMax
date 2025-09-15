@@ -138,6 +138,53 @@ a {
   transform: scale(0.98);
 }
 
+/* Pagination */
+nav[role="navigation"] > div:first-child,
+nav[role="navigation"] > div > div:first-child {
+  display: none !important;
+}
+
+nav[role="navigation"] {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  margin-left: 0;
+}
+
+nav[role="navigation"] .inline-flex {
+  gap: 15px;
+}
+
+nav[role="navigation"] a,
+nav[role="navigation"] span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--light-blue);
+  background-color: transparent;
+  border: none;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+}
+
+nav[role="navigation"] [aria-current="page"] {
+  background-color: var(--gray);
+  color: var(--dark-blue);
+  cursor: default;
+}
+
+nav[role="navigation"] [aria-disabled="true"] {
+  opacity: 0.3;
+  pointer-events: none;
+}
+
 @media (max-width: 1024px) {
   .logo {
     font-size: 36px;

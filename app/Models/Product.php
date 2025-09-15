@@ -15,7 +15,7 @@ class Product extends Model
      * $this->attributes['id'] - int - contains the product primary key (id)
      * $this->attributes['name'] - string - contains the product name
      * $this->attributes['description'] - string - contains the product description
-     * $this->attributes['keywords'] - string[] - contains the product keywords
+     * $this->attributes['keywords'] - string - contains the product keywords
      * $this->attributes['image'] - string - contains the product image
      * $this->attributes['inventory'] - int - contains the product inventory
      * $this->attributes['price'] - int - contains the product price
@@ -62,9 +62,9 @@ class Product extends Model
         $this->attributes['description'] = $description;
     }
 
-    public function getKeywords(): array
+    public function getKeywords(): string
     {
-        return explode(',', $this->attributes['keywords']);
+        return $this->attributes['keywords'];
     }
 
     public function setKeywords(string $keywords): void
@@ -74,7 +74,7 @@ class Product extends Model
 
     public function getImage(): string
     {
-        return $this->attributes['image'];
+        return '/storage/'.$this->attributes['image'];
     }
 
     public function setImage(string $image): void

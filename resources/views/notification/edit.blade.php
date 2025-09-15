@@ -15,7 +15,7 @@
       <p class="light-blue bold">{{ $viewData['notification']['product']->getName() }}</p>
     </div>
 
-    <form action="" method="PUT" id="notification-form" class="form-box flex column center light-blue">
+    <form action="" method="POST" id="notification-form" class="form-box flex column center light-blue">
       @csrf
       @method('PUT')
       <label for="quantity">{{ __('notification/edit.quantity') }}</label>

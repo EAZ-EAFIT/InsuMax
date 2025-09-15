@@ -17,7 +17,7 @@
 
 <div class="products-container grid">
 	@foreach ($viewData['products'] as $product)
-	<div class="product-card dark-blue-bg flex column">
+	<div class="product-card dark-blue-bg">
 		<div class="product-card-img">
 			<img src="{{ $product->getImage() }}" alt="{{ $product->getName() }}">
 		</div>
