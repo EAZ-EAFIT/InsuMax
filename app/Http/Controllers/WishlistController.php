@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Wishlist;
-use App\Models\Customer;
 use App\Models\Product;
-use Illuminate\Support\Collection;
+use App\Models\User;
+use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -17,8 +16,8 @@ class WishlistController extends Controller
         $viewData = [];
 
         // TEST USER, ALWAYS THE SAME
-        $viewData['customer'] = Customer::findOrFail(1);
-        $viewData['wishlists'] = Wishlist::with('products')->where('customer_id', $viewData['customer']->getId())->get();
+        $viewData['user'] = User::findOrFail(1);
+        $viewData['wishlists'] = Wishlist::with('products')->where('user_id', $viewData['user']->getId())->get();
 
         return view('wishlist.index')->with('viewData', $viewData);
     }
@@ -26,43 +25,42 @@ class WishlistController extends Controller
     public function show(int $id): View
     {
         // TEST USER, ALWAYS THE SAME
-        $customer = Customer::findOrFail(1);
+        $user = User::findOrFail(1);
 
-        $wishlist = Wishlist::with('products')->where('customer_id', $customer->getId())->where('id', $id)->firstOrFail();
+        $wishlist = Wishlist::with('products')->where('user_id', $user->getId())->where('id', $id)->firstOrFail();
 
         $viewData = [];
         $viewData['wishlist'] = $wishlist;
-        $viewData['customer'] = $customer;
+        $viewData['user'] = $user;
 
         return view('wishlist.show')->with('viewData', $viewData);
     }
 
-    public function addOptions(int $productId): View | RedirectResponse
+    public function addOptions(int $productId): View|RedirectResponse
     {
         // TEST USER, ALWAYS THE SAME
-        $customer = Customer::findOrFail(1);
+        $user = User::findOrFail(1);
 
-        $wishlists = Wishlist::where('customer_id', $customer->getId())->get();
+        $wishlists = Wishlist::where('user_id', $user->getId())->get();
         $product = Product::findOrFail($productId);
 
         $viewData = [];
         $viewData['wishlists'] = $wishlists;
-        $viewData['customer'] = $customer;
+        $viewData['user'] = $user;
         $viewData['product'] = $product;
 
-    return view('wishlist.addOptions')->with('viewData', $viewData);
-
+        return view('wishlist.addOptions')->with('viewData', $viewData);
     }
 
     public function addProduct(Request $request): RedirectResponse
     {
         // TEST USER, ALWAYS THE SAME
-        $customer = Customer::findOrFail(1);
+        $user = User::findOrFail(1);
 
         $wishlistId = $request->input('wishlistId');
         $productId = $request->input('productId');
 
-        $wishlist = Wishlist::where('customer_id', $customer->getId())->where('id', $wishlistId)->firstOrFail();
+        $wishlist = Wishlist::where('user_id', $user->getId())->where('id', $wishlistId)->firstOrFail();
         $product = Product::findOrFail($productId);
         $wishlist->addProduct($product);
         $wishlist->save();
@@ -73,12 +71,12 @@ class WishlistController extends Controller
     public function deleteProduct(Request $request): RedirectResponse
     {
         // TEST USER, ALWAYS THE SAME
-        $customer = Customer::findOrFail(1);
+        $user = User::findOrFail(1);
 
         $wishlistId = $request->input('wishlistId');
         $productId = $request->input('productId');
 
-        $wishlist = Wishlist::where('customer_id', $customer->getId())->where('id', $wishlistId)->firstOrFail();
+        $wishlist = Wishlist::where('user_id', $user->getId())->where('id', $wishlistId)->firstOrFail();
         $product = Product::findOrFail($productId);
         $wishlist->removeProduct($product);
         $wishlist->save();
@@ -86,13 +84,11 @@ class WishlistController extends Controller
         return back();
     }
 
-
-
     public function create(): View
     {
         // TEST USER, ALWAYS THE SAME
         $viewData = [];
-        $viewData['customer'] = Customer::findOrFail(1);
+        $viewData['user'] = User::findOrFail(1);
 
         return view('wishlist.create')->with('viewData', $viewData);
     }
@@ -100,9 +96,9 @@ class WishlistController extends Controller
     public function save(Request $request): RedirectResponse
     {
 
-        $customer = Customer::findOrFail(1); // TEST USER, ALWAYS THE SAME
+        $user = User::findOrFail(1); // TEST USER, ALWAYS THE SAME
         Wishlist::validate($request);
-        Wishlist::create(['name' => $request->name, 'customer_id' => $customer->getId()]);
+        Wishlist::create(['name' => $request->name, 'user_id' => $user->getId()]);
 
         return redirect()->route('wishlist.index');
     }

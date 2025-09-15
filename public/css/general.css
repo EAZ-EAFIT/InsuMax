@@ -1,0 +1,190 @@
+:root {
+  --brown: #A35139;
+  --yellow: #FFB162;
+  --gray: #C9C1B1;
+  --white: #EEE9DF;
+  --light-blue: #2C3B4D;
+  --dark-blue: #1B2632;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
+html, body {
+  height: 100%;
+  background-color: #F5F3F0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.grid {
+  display: grid;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.regular {
+  font-weight: 300;
+}
+
+.semibold {
+  font-weight: 500;
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.logo {
+  font-family: "Merriweather", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 48px;
+}
+
+.logo-span {
+  font-size: 56px;
+  letter-spacing: 9px;
+}
+
+.brown-bg {
+ background-color: var(--brown);
+}
+
+.brown {
+  color: var(--brown);
+}
+
+.yellow-bg {
+ background-color: var(--yellow);
+}
+
+.yellow {
+  color: var(--yellow);
+}
+
+.gray-bg {
+ background-color: var(--gray);
+}
+
+.gray {
+  color: var(--gray);
+}
+
+.white-bg {
+ background-color: var(--white);
+}
+
+.white {
+  color: var(--white);
+}
+
+.light-blue-bg {
+ background-color: var(--light-blue);
+}
+
+.light-blue {
+  color: var(--light-blue);
+}
+
+.dark-blue-bg {
+ background-color: var(--dark-blue);
+}
+
+.dark-blue {
+  color: var(--dark-blue);
+}
+
+.btn-dark-blue {
+  padding: 12px 24px;
+  background-color: var(--dark-blue);
+  color: var(--white);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-dark-blue:hover {
+  background-color: var(--light-blue);
+}
+
+.btn-dark-blue:active {
+  transform: scale(0.98);
+}
+
+@media (max-width: 1024px) {
+  .logo {
+    font-size: 36px;
+  }
+
+  .logo-span {
+    font-size: 42px;
+    letter-spacing: 5px;
+  }
+
+  .btn-dark-blue {
+    padding: 10px 20px;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .logo {
+    font-size: 28px;
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .logo-span {
+    font-size: 32px;
+    letter-spacing: 3px;
+  }
+
+  .btn-dark-blue {
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 22px;
+  }
+
+  .logo-span {
+    font-size: 26px;
+    letter-spacing: 1px;
+  }
+
+  .btn-dark-blue {
+    font-size: 14px;
+    width: 100%;
+    padding: 12px;
+  }
+}
