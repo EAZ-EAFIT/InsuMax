@@ -1,0 +1,10 @@
+main {
+  gap: 30px;
+  text-align: center;
+}
+
+main p {
+  text-align: center;
+  line-height: 20px;
+  width: 220px;
+}

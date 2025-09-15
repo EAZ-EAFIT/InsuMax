@@ -1,0 +1,53 @@
+main {
+  gap: 15px;
+}
+
+form {
+  gap: 7px;
+}
+
+label {
+  font-weight: 400;
+  margin-top: 25px;
+  color: var(--light-blue);
+}
+
+input,
+textarea {
+  font-family: "Raleway", sans-serif;
+  width: 200px;
+  border: none;
+  background: var(--gray);
+  border-radius: 8px;
+  color: var(--light-blue);
+  outline: none;
+}
+
+input {
+  text-align: center;
+  height: 35px;
+  padding: 0 5px;
+}
+
+textarea {
+  min-height: 35px;
+  min-width: 200px;
+  padding: 8px;
+}
+
+input[type="file"] {
+  background: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+form button {
+  font-family: "Raleway", sans-serif;
+  margin-top: 20px;
+}

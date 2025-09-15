@@ -65,6 +65,10 @@ header {
 }
 
 .product-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr auto;
+
   border-radius: 20px;
   overflow: hidden;
   height: 490px;
