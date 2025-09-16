@@ -8,9 +8,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Customer;
 use App\Models\Item;
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -20,14 +20,14 @@ class OrderController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['orders'] = Order::with(['customer', 'items'])->get();
+        $viewData['orders'] = Order::with(['user', 'items'])->get();
 
         return view('order.index')->with('viewData', $viewData);
     }
 
     public function show(int $id): View
     {
-        $order = Order::with(['customer', 'items'])->findOrFail($id);
+        $order = Order::with(['user', 'items'])->findOrFail($id);
 
         $viewData = [];
         $viewData['order'] = $order;
@@ -38,7 +38,7 @@ class OrderController extends Controller
     public function create(): View
     {
         $viewData = [];
-        $viewData['customers'] = Customer::all();
+        $viewData['users'] = User::all();
 
         return view('order.create')->with('viewData', $viewData);
     }
@@ -51,7 +51,7 @@ class OrderController extends Controller
             'total' => $request->total,
             'has_shipped' => $request->has_shipped,
             'payment_type' => $request->payment_type,
-            'customer_id' => $request->customer_id,
+            'user_id' => $request->user_id,
         ]);
 
         if ($request->has('items')) {

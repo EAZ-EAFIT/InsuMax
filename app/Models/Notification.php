@@ -17,22 +17,22 @@ class Notification extends Model
     /**
      * NOTIFICATION ATTRIBUTES
      * $this->attributes['id'] - int - contains the notification primary key (id)
-     * $this->attributes['notification_date'] - string - contains the notification date
+     * $this->attributes['date'] - string - contains the notification date
      * $this->attributes['time_interval'] - int - contains the time interval
      * $this->attributes['quantity'] - int - contains the quantity
      * $this->product - Product - contains the associated product
-     * $this->customer - Customer - contains the associated customer
+     * $this->user - User - contains the associated user
      */
-    protected $fillable = ['notification_date', 'time_interval', 'quantity', 'product_id', 'customer_id'];
+    protected $fillable = ['date', 'time_interval', 'quantity', 'product_id', 'user_id'];
 
     public static function validate(Request $request): void
     {
         $request->validate([
-            'notification_date' => 'required|date',
-            'time_interval' => 'required|integer|min:0',
+            'date' => 'required|date',
+            'timeInterval' => 'required|integer|min:0',
             'quantity' => 'required|integer|min:0',
-            'product_id' => 'required|exists:products,id',
-            'customer_id' => 'required|exists:customers,id',
+            'productId' => 'required|exists:products,id',
+            'userId' => 'required|exists:users,id',
         ]);
     }
 
@@ -41,9 +41,9 @@ class Notification extends Model
         return $this->attributes['id'];
     }
 
-    public function getNotificationDate(): string
+    public function getDate(): string
     {
-        return $this->attributes['notification_date'];
+        return $this->attributes['date'];
     }
 
     public function getTimeInterval(): int
@@ -61,14 +61,14 @@ class Notification extends Model
         return $this->product;
     }
 
-    public function getCustomer(): Customer
+    public function getUser(): User
     {
-        return $this->customer;
+        return $this->user;
     }
 
-    public function setNotificationDate(string $date): void
+    public function setDate(string $date): void
     {
-        $this->attributes['notification_date'] = $date;
+        $this->attributes['date'] = $date;
     }
 
     public function setTimeInterval(int $interval): void
@@ -86,9 +86,9 @@ class Notification extends Model
         $this->product = $product;
     }
 
-    public function setCustomer(Customer $customer): void
+    public function setUser(User $user): void
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     public function product(): BelongsTo
@@ -96,40 +96,18 @@ class Notification extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function customer(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Customer::class);
-    }
-
-    public static function createNotification(array $data): self
-    {
-        return self::create($data);
-    }
-
-    public static function getNotification(int $id): ?self
-    {
-        return self::find($id);
-    }
-
-    public static function updateNotification(int $id, array $data): bool
-    {
-        $notification = self::find($id);
-
-        return $notification ? $notification->update($data) : false;
-    }
-
-    public static function deleteNotification(int $id): bool
-    {
-        return self::destroy($id) > 0;
+        return $this->belongsTo(User::class);
     }
 
     public function notify(): void
     {
-        $customer = $this->getCustomer();
+        $user = $this->getUser();
 
-        $toEmail = $customer->getEmail();
+        $toEmail = $user->getEmail();
         $subject = 'Product Notification';
-        $message = 'Hello '.$customer->getName().",\n\n"
+        $message = 'Hello '.$user->getName().",\n\n"
             .'This is a reminder for the product: '.$this->getProduct()->getName().".\n"
             .'Quantity: '.$this->getQuantity()."\n"
             .'Notification Date: '.$this->getNotificationDate()."\n\n"

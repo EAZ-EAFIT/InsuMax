@@ -48,7 +48,7 @@
         <p class="light-blue semibold">{{ $viewData['date'] }}</p>
 
         <p class="light-blue">{{ __('notification/save.frequency') }}</p>
-        <p class="light-blue semibold">{{ $viewData['frequency'] }} {{ __('notification/save.days') }}</p>
+        <p class="light-blue semibold">{{ $viewData['timeInterval'] }} {{ __('notification/save.days') }}</p>
       </div>
 
       <a href="{{ route('notification.index') }}" class="btn-dark-blue">{{ __('notification/save.notifications') }}</a>

@@ -24,10 +24,10 @@ class Order extends Model
      * $this->attributes['payment_type'] - string - contains the payment type
      * $this->attributes['created_at'] - string - contains the timestamp of creation
      * $this->attributes['updated_at'] - string - contains the timestamp of updates
-     * $this->customer - Customer - contains the associated customer
+     * $this->user - User - contains the associated user
      * $this->items - Item[] - contains the associated items
      */
-    protected $fillable = ['total', 'has_shipped', 'payment_type', 'customer_id'];
+    protected $fillable = ['total', 'has_shipped', 'payment_type', 'user_id'];
 
     public static function validate(Request $request): void
     {
@@ -35,7 +35,7 @@ class Order extends Model
             'total' => 'required|integer|min:0',
             'has_shipped' => 'required|boolean',
             'payment_type' => 'required|string|max:50',
-            'customer_id' => 'required|exists:customers,id',
+            'user_id' => 'required|exists:users,id',
         ]);
     }
 
@@ -69,9 +69,9 @@ class Order extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function getCustomer(): Customer
+    public function getUser(): User
     {
-        return $this->customer;
+        return $this->user;
     }
 
     public function getItems(): Collection
@@ -94,9 +94,9 @@ class Order extends Model
         $this->attributes['payment_type'] = $paymentType;
     }
 
-    public function setCustomer(Customer $customer): void
+    public function setUser(User $user): void
     {
-        $this->customer = $customer;
+        $this->user = $user;
     }
 
     public function setItems(Collection $items): void
@@ -104,9 +104,9 @@ class Order extends Model
         $this->items = $items;
     }
 
-    public function customer(): BelongsTo
+    public function user(): BelongsTo
     {
-        return $this->belongsTo(Customer::class);
+        return $this->belongsTo(User::class);
     }
 
     public function items(): HasMany
