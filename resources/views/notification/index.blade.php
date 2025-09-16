@@ -24,9 +24,9 @@
 
       <span class="light-blue">{{ $notification['quantity'] }}</span>
 
-      <p class="light-blue">{{ __('notification/index.every') }} {{ $notification['frequency'] }} {{ __('notification/index.days') }}</p>
+      <p class="light-blue">{{ __('notification/index.every') }} {{ $notification->getTimeInterval() }} {{ __('notification/index.days') }}</p>
 
-      <p class="light-blue">{{ $notification['nextDate'] }}</p>
+      <p class="light-blue">{{ $notification->getDate() }}</p>
     </div>
 
     <div class="actions-wrapper flex ">
@@ -40,14 +40,14 @@
       </a>
 
       <div class="actions-container flex">
-        <a href="{{ route('notification.edit') }}" class="light-blue flex center">
+        <a href="{{ route('notification.edit', $notification->getId()) }}" class="light-blue flex center">
           <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 35 35" fill="none">
             <path d="M24.792 4.37499C25.175 3.99197 25.6297 3.68814 26.1302 3.48085C26.6306 3.27356 27.167 3.16687 27.7087 3.16687C28.2503 3.16687 28.7867 3.27356 29.2871 3.48085C29.7876 3.68814 30.2423 3.99197 30.6253 4.37499C31.0083 4.75801 31.3122 5.21273 31.5195 5.71317C31.7268 6.21361 31.8334 6.74998 31.8334 7.29166C31.8334 7.83333 31.7268 8.36971 31.5195 8.87015C31.3122 9.37059 31.0083 9.8253 30.6253 10.2083L10.9378 29.8958L2.91699 32.0833L5.10449 24.0625L24.792 4.37499Z" stroke="#1B2632" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           {{ __('notification/index.edit') }}
         </a>
 
-        <form action="" method="POST">
+        <form action="{{ route('notification.delete', $notification->getId()) }}" method="POST">
           @csrf
           @method('DELETE')
           <button type="submit" class="delete-btn brown flex center">

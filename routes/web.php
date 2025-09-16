@@ -9,7 +9,6 @@
 use Illuminate\Support\Facades\Route;
 
 $HOME_CONTROLLER_PATH = 'App\Http\Controllers\HomeController';
-$CUSTOMER_CONTROLLER_PATH = 'App\Http\Controllers\CustomerController';
 $ITEM_CONTROLLER_PATH = 'App\Http\Controllers\ItemController';
 $WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\WishlistController';
 $PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\ProductController';
@@ -17,12 +16,6 @@ $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
 $NOTIFICATION_CONTROLLER_PATH = 'App\Http\Controllers\NotificationController';
 
 Route::get('/', $HOME_CONTROLLER_PATH.'@index')->name('home.index');
-
-Route::get('/customer', $CUSTOMER_CONTROLLER_PATH.'@index')->name('customer.index');
-Route::get('/customer/create', $CUSTOMER_CONTROLLER_PATH.'@create')->name('customer.create');
-Route::post('/customer/save', $CUSTOMER_CONTROLLER_PATH.'@save')->name('customer.save');
-Route::get('/customer/{id}', $CUSTOMER_CONTROLLER_PATH.'@show')->name('customer.show');
-Route::delete('/customer/delete/{id}', $CUSTOMER_CONTROLLER_PATH.'@delete')->name('customer.delete');
 
 Route::get('/item', $ITEM_CONTROLLER_PATH.'@index')->name('item.index');
 Route::get('/item/create', $ITEM_CONTROLLER_PATH.'@create')->name('item.create');
@@ -52,10 +45,11 @@ Route::post('/order/pay/{id}', $ORDER_CONTROLLER_PATH.'@pay')->name('order.pay')
 
 Route::get('/notification', $NOTIFICATION_CONTROLLER_PATH.'@index')->name('notification.index');
 Route::get('/notification/create', $NOTIFICATION_CONTROLLER_PATH.'@create')->name('notification.create');
+Route::get('/notification/set/{id}', $NOTIFICATION_CONTROLLER_PATH.'@set')->name('notification.set');
 Route::post('/notification/save', $NOTIFICATION_CONTROLLER_PATH.'@save')->name('notification.save');
-Route::get('/notification/{id}', $NOTIFICATION_CONTROLLER_PATH.'@show')->name('notification.show');
+Route::get('/notification/edit/{id}', $NOTIFICATION_CONTROLLER_PATH.'@edit')->name('notification.edit');
+Route::put('/notification/edit/{id}/update', $NOTIFICATION_CONTROLLER_PATH.'@update')->name('notification.update');
 Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delete')->name('notification.delete');
-Route::get('/notification/show', $NOTIFICATION_CONTROLLER_PATH.'@show')->name('notification.show');
 
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';

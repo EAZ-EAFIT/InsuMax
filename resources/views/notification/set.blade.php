@@ -33,6 +33,16 @@
       <p class="light-blue bold">{{ $viewData['product']->getName() }}</p>
     </div>
 
+    <div>
+      @if($errors->any())
+      <ul class="flex column center">
+        @foreach($errors->all() as $error)
+        <li class="brown">{{ $error }}</li>
+        @endforeach
+      </ul>
+      @endif
+    </div>
+
     <form action="{{ route('notification.save') }}" method="POST" id="notification-form" class="form-box flex column center light-blue">
       @csrf
       @method('POST')
@@ -45,12 +55,13 @@
       <p>{{ __('notification/set.frequency') }}</p>
 
       <div class="frequency flex center">
-        <label for="frequency">{{ __('notification/set.every') }}</label>
-        <input type="number" id="frequency" name="frequency" min="1" value="{{ old('frequency') }}" class="quantity" required>
+        <label for="timeInterval">{{ __('notification/set.every') }}</label>
+        <input type="number" id="timeInterval" name="timeInterval" min="1" value="{{ old('timeInterval') }}" class="quantity" required>
         <span>{{ __('notification/set.days') }}</span>
       </div>
 
       <input type="hidden" name="productId" value="{{ $viewData['product']->getId() }}">
+      <input type="hidden" name="userId" value="{{ $viewData['user']->getId() }}">
     </form>
 
     <button type="submit" form="notification-form" class="brown-bg white">
@@ -58,7 +69,7 @@
     </button>
 
     <a href="{{ url()->previous() }}" class="btn-dark-blue">{!! __('notification/set.back') !!}</a>
-    </div>
   </div>
+</div>
 </div>
 @endsection

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('total');
             $table->boolean('has_shipped')->default(false);
             $table->string('payment_type');
-            $table->foreignId('customer_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }

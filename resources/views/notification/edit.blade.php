@@ -15,19 +15,35 @@
       <p class="light-blue bold">{{ $viewData['notification']['product']->getName() }}</p>
     </div>
 
-    <form action="" method="POST" id="notification-form" class="form-box flex column center light-blue">
+    <div>
+      @if($errors->any())
+      <ul class="flex column center">
+        @foreach($errors->all() as $error)
+        <li class="brown">{{ $error }}</li>
+        @endforeach
+      </ul>
+      @endif
+    </div>
+
+    <form action="{{ route('notification.update', $viewData['notification']->getId()) }}" method="POST" id="notification-form" class="form-box flex column center light-blue">
       @csrf
       @method('PUT')
       <label for="quantity">{{ __('notification/edit.quantity') }}</label>
-      <input type="number" id="quantity" name="quantity" min="1" value="{{ old('quantity') }}" class="quantity" required>
+      <input type="number" id="quantity" name="quantity" min="1" value="{{ $viewData['notification']->getQuantity() }}" class="quantity" required>
 
+      <label for="date">{{ __('notification/edit.date') }}</label>
+      <input type="date" id="date" name="date" min="1" value="{{ $viewData['notification']->getdate() }}" required>
+      
       <p>{{ __('notification/edit.frequency') }}</p>
 
       <div class="frequency flex center">
-        <label for="frequency">{{ __('notification/edit.every') }}</label>
-        <input type="number" id="frequency" name="frequency" min="1" value="{{ old('frequency') }}" class="quantity" required>
+        <label for="timeInterval">{{ __('notification/edit.every') }}</label>
+        <input type="number" id="timeInterval" name="timeInterval" min="1" value="{{ $viewData['notification']->getTimeInterval() }}" class="quantity" required>
         <span>{{ __('notification/edit.days') }}</span>
       </div>
+
+      <input type="hidden" name="productId" value="{{ $viewData['notification']->getProduct()->getId() }}">
+      <input type="hidden" name="userId" value="{{ $viewData['notification']->getUser()->getId() }}">
     </form>
 
     <button type="submit" form="notification-form" class="brown-bg white">

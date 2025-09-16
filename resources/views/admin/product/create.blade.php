@@ -9,7 +9,7 @@
 
   <div>
     @if($errors->any())
-    <ul class="flex colum">
+    <ul class="flex column">
       @foreach($errors->all() as $error)
       <li class="brown">{{ $error }}</li>
       @endforeach
