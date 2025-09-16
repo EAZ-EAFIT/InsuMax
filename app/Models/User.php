@@ -1,5 +1,11 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Mateo Pineda
+--------------------------------------------------------------------------
+*/
+
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;

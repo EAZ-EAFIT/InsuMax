@@ -1,23 +1,28 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Mateo Pineda
+--------------------------------------------------------------------------
+*/
+
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Product;
 use App\Http\Controllers\Controller;
-use Illuminate\View\View;
+use App\Models\Product;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class AdminProductController extends Controller
 {
     public function index(): View
     {
         $viewData = [];
-        $viewData["products"] = Product::paginate(10);
+        $viewData['products'] = Product::paginate(10);
 
-        return view('admin.product.index')->with("viewData", $viewData);
+        return view('admin.product.index')->with('viewData', $viewData);
     }
 
     public function create(): View
@@ -32,7 +37,7 @@ class AdminProductController extends Controller
         // Falta el procesamiento de keywords. No se si se peuda aquí o toque en Utils
 
         if ($request->hasFile('image')) {
-            $imageName = str_replace(' ', '', $request->name) . "." . $request->file('image')->extension();
+            $imageName = str_replace(' ', '', $request->name).'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
@@ -61,9 +66,9 @@ class AdminProductController extends Controller
     public function edit(int $id): View
     {
         $viewData = [];
-        $viewData["product"] = Product::findOrFail($id);
+        $viewData['product'] = Product::findOrFail($id);
 
-        return view('admin.product.edit')->with("viewData", $viewData);
+        return view('admin.product.edit')->with('viewData', $viewData);
     }
 
     public function update(Request $request, int $id): RedirectResponse
@@ -76,7 +81,7 @@ class AdminProductController extends Controller
         $product->setDescription($request->input('description'));
         $product->setKeywords($request->input('keywords'));
         if ($request->hasFile('image')) {
-            $imageName = str_replace(' ', '', $product->getName()) . "." . $request->file('image')->extension();
+            $imageName = str_replace(' ', '', $product->getName()).'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())

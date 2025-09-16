@@ -1,5 +1,11 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Esteban Álvarez
+--------------------------------------------------------------------------
+*/
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;

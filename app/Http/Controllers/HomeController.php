@@ -1,5 +1,11 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Esteban Álvarez
+--------------------------------------------------------------------------
+*/
+
 namespace App\Http\Controllers;
 
 use Illuminate\View\View;

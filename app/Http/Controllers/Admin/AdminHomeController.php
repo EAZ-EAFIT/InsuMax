@@ -1,5 +1,11 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Mateo Pineda
+--------------------------------------------------------------------------
+*/
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
