@@ -1,5 +1,11 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Esteban Álvarez, Mateo Pineda, Daniel Arcila
+--------------------------------------------------------------------------
+*/
+
 use Illuminate\Support\Facades\Route;
 
 $HOME_CONTROLLER_PATH = 'App\Http\Controllers\HomeController';
@@ -8,6 +14,7 @@ $ITEM_CONTROLLER_PATH = 'App\Http\Controllers\ItemController';
 $WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\WishlistController';
 $PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\ProductController';
 $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
+$NOTIFICATION_CONTROLLER_PATH = 'App\Http\Controllers\NotificationController';
 
 Route::get('/', $HOME_CONTROLLER_PATH.'@index')->name('home.index');
 
@@ -35,7 +42,6 @@ Route::delete('/wishlist/delete/{id}', $WISHLIST_CONTROLLER_PATH.'@delete')->nam
 Route::get('/product', $PRODUCT_CONTROLLER_PATH.'@index')->name('product.index');
 Route::get('/product/{id}', $PRODUCT_CONTROLLER_PATH.'@show')->name('product.show');
 
-
 Route::get('/order', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
 Route::get('/order/create', $ORDER_CONTROLLER_PATH.'@create')->name('order.create');
 Route::post('/order/save', $ORDER_CONTROLLER_PATH.'@save')->name('order.save');
@@ -44,14 +50,23 @@ Route::delete('/order/delete/{id}', $ORDER_CONTROLLER_PATH.'@delete')->name('ord
 Route::post('/order/cancel/{id}', $ORDER_CONTROLLER_PATH.'@cancel')->name('order.cancel');
 Route::post('/order/pay/{id}', $ORDER_CONTROLLER_PATH.'@pay')->name('order.pay');
 
+Route::get('/notification', $NOTIFICATION_CONTROLLER_PATH.'@index')->name('notification.index');
+Route::get('/notification/create', $NOTIFICATION_CONTROLLER_PATH.'@create')->name('notification.create');
+Route::post('/notification/save', $NOTIFICATION_CONTROLLER_PATH.'@save')->name('notification.save');
+Route::get('/notification/{id}', $NOTIFICATION_CONTROLLER_PATH.'@show')->name('notification.show');
+Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delete')->name('notification.delete');
+Route::get('/notification/show', $NOTIFICATION_CONTROLLER_PATH.'@show')->name('notification.show');
+
 Route::middleware('admin')->group(function () {
-    Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
-    Route::get('/admin/products', 'App\Http\Controllers\Admin\AdminProductController@index')->name('admin.product.index');
-    Route::get('/admin/products/create', 'App\Http\Controllers\Admin\AdminProductController@create')->name('admin.product.create');
-    Route::post('/admin/products/store', 'App\Http\Controllers\Admin\AdminProductController@store')->name('admin.product.store');
-    Route::delete('/admin/products/{id}/delete', 'App\Http\Controllers\Admin\AdminProductController@delete')->name('admin.product.delete');
-    Route::get('/admin/products/{id}/edit', 'App\Http\Controllers\Admin\AdminProductController@edit')->name('admin.product.edit');
-    Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name('admin.product.update');
+    $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';
+    $ADMIN_PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminProductController';
+    Route::get('/admin', $ADMIN_HOME_CONTROLLER_PATH.'@index')->name('admin.home.index');
+    Route::get('/admin/products', $ADMIN_PRODUCT_CONTROLLER_PATH.'@index')->name('admin.product.index');
+    Route::get('/admin/products/create', $ADMIN_PRODUCT_CONTROLLER_PATH.'@create')->name('admin.product.create');
+    Route::post('/admin/products/store', $ADMIN_PRODUCT_CONTROLLER_PATH.'@store')->name('admin.product.store');
+    Route::delete('/admin/products/{id}/delete', $ADMIN_PRODUCT_CONTROLLER_PATH.'@delete')->name('admin.product.delete');
+    Route::get('/admin/products/{id}/edit', $ADMIN_PRODUCT_CONTROLLER_PATH.'@edit')->name('admin.product.edit');
+    Route::put('/admin/products/{id}/update', $ADMIN_PRODUCT_CONTROLLER_PATH.'@update')->name('admin.product.update');
 });
 
 Auth::routes();

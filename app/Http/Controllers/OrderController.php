@@ -1,12 +1,18 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Daniel Arcila
+--------------------------------------------------------------------------
+*/
+
 namespace App\Http\Controllers;
 
-use App\Models\Order;
 use App\Models\Customer;
 use App\Models\Item;
-use Illuminate\Http\Request;
+use App\Models\Order;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class OrderController extends Controller

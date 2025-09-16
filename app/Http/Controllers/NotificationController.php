@@ -1,12 +1,18 @@
 <?php
 
+/*
+--------------------------------------------------------------------------
+ Code developed by Daniel Arcila
+--------------------------------------------------------------------------
+*/
+
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Notification;
 use App\Models\Product;
-use App\Models\Customer;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class NotificationController extends Controller
