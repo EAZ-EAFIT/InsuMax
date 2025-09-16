@@ -54,6 +54,7 @@ Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delet
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';
     $ADMIN_PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminProductController';
+    
     Route::get('/admin', $ADMIN_HOME_CONTROLLER_PATH.'@index')->name('admin.home.index');
     Route::get('/admin/products', $ADMIN_PRODUCT_CONTROLLER_PATH.'@index')->name('admin.product.index');
     Route::get('/admin/products/create', $ADMIN_PRODUCT_CONTROLLER_PATH.'@create')->name('admin.product.create');
