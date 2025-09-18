@@ -1,10 +1,10 @@
 .title-container {
   justify-content: space-between;
-  margin: 50px 40px 0px 40px;
+  margin: 50px;
 }
 
 .title-container h1 {
-  font-size: 38px;
+  font-size: 32px;
 }
 
 .btn-dark-blue {
@@ -26,6 +26,11 @@ h2, .product-container {
   border-image: linear-gradient(to right, #1B2632 50%, #FFB16280 100%) 1;
 }
 
+.guest {
+  gap: 30px;
+  width: 100%;
+}
+
 .product-container {
   padding: 20px 50px;
   justify-content: space-between;
@@ -41,6 +46,19 @@ img {
 
 .product-container p {
   font-size: 18px;
+}
+
+.btn-remove-product {
+  font-family: "Raleway", sans-serif;
+  background: none;
+  border: none;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.btn-remove-product svg {
+  height: 20px;
+  width: 20px;
 }
 
 .end-options {
