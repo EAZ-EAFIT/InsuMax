@@ -61,7 +61,6 @@
       </div>
 
       <input type="hidden" name="productId" value="{{ $viewData['product']->getId() }}">
-      <input type="hidden" name="userId" value="{{ $viewData['user']->getId() }}">
     </form>
 
     <button type="submit" form="notification-form" class="brown-bg white">

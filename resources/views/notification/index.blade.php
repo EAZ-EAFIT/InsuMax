@@ -4,10 +4,15 @@
 @endsection
 @section('title', __('notification/index.title'))
 @section('content')
-<h1>{{ __('notification/index.subtitle') }}</h1>
+<h1 class="dark-blue">{{ __('notification/index.subtitle') }}</h1>
 
+@guest
+<div class="flex center light-blue">
+  <h3>{{ __('notification/index.guest') }}</h3>
+</div>
+@else
 <div class="flex column">
-  @foreach ($viewData['notifications'] as $notification)
+  @forelse ($viewData['notifications'] as $notification)
   <div class="title-container grid">
     <p class="dark-blue bold">{{ __('notification/index.product') }}</p>
     <p class="dark-blue bold">{{ __('notification/index.quantity') }}</p>
@@ -63,7 +68,11 @@
       </div>
     </div>
   </div>
-  @endforeach
+  @empty
+  <div class="flex center light-blue">
+    <h3>{{ __('notification/index.empty') }}</h3>
+  </div>
+  @endforelse
 
   <a href="{{ route('notification.create') }}" class="add-notification-btn btn-dark-blue flex center">
     <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
@@ -74,4 +83,5 @@
     {{ __('notification/index.addNotification') }}
   </a>
 </div>
+@endguest
 @endsection
