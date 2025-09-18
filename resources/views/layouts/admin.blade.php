@@ -23,6 +23,7 @@
       <div class="links-container flex column">
         <a href="{{ route('admin.home.index') }}">{{ __('layout/admin.home') }}</a>
         <a href="{{ route('admin.product.index') }}">{{ __('layout/admin.products') }}</a>
+        <a href="{{ route('admin.wishlist.index') }}">{{ __('layout/admin.wishlists') }}</a>
       </div>
       <form id="logout" action="{{ route('logout') }}" method="POST" class="logout-btn flex center">
           @csrf

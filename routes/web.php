@@ -54,6 +54,8 @@ Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delet
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';
     $ADMIN_PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminProductController';
+    $ADMIN_WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminWishlistController';
+    
     Route::get('/admin', $ADMIN_HOME_CONTROLLER_PATH.'@index')->name('admin.home.index');
     Route::get('/admin/products', $ADMIN_PRODUCT_CONTROLLER_PATH.'@index')->name('admin.product.index');
     Route::get('/admin/products/create', $ADMIN_PRODUCT_CONTROLLER_PATH.'@create')->name('admin.product.create');
@@ -61,6 +63,13 @@ Route::middleware('admin')->group(function () {
     Route::delete('/admin/products/{id}/delete', $ADMIN_PRODUCT_CONTROLLER_PATH.'@delete')->name('admin.product.delete');
     Route::get('/admin/products/{id}/edit', $ADMIN_PRODUCT_CONTROLLER_PATH.'@edit')->name('admin.product.edit');
     Route::put('/admin/products/{id}/update', $ADMIN_PRODUCT_CONTROLLER_PATH.'@update')->name('admin.product.update');
+
+    Route::get('/admin/wishlists', $ADMIN_WISHLIST_CONTROLLER_PATH.'@index')->name('admin.wishlist.index');
+    Route::get('/admin/wishlists/create', $ADMIN_WISHLIST_CONTROLLER_PATH.'@create')->name('admin.wishlist.create');
+    Route::post('/admin/wishlists/store', $ADMIN_WISHLIST_CONTROLLER_PATH.'@store')->name('admin.wishlist.store');
+    Route::delete('/admin/wishlists/{id}/delete', $ADMIN_WISHLIST_CONTROLLER_PATH.'@delete')->name('admin.wishlist.delete');
+    Route::get('/admin/wishlists/{id}/edit', $ADMIN_WISHLIST_CONTROLLER_PATH.'@edit')->name('admin.wishlist.edit');
+    Route::put('/admin/wishlists/{id}/update', $ADMIN_WISHLIST_CONTROLLER_PATH.'@update')->name('admin.wishlist.update');
 });
 
 Auth::routes();
