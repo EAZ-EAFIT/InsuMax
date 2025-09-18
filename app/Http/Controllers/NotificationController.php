@@ -20,7 +20,7 @@ class NotificationController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['notifications'] = Notification::with(['product', 'user'])->get();
+        $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::id())->get();
 
         return view('notification.index')->with('viewData', $viewData);
     }
@@ -37,7 +37,6 @@ class NotificationController extends Controller
     {
         $viewData = [];
         $viewData['product'] = Product::findOrFail($id);
-        $viewData['user'] = Auth::user();
 
         return view('notification.set')->with('viewData', $viewData);
     }
@@ -51,7 +50,7 @@ class NotificationController extends Controller
             'time_interval' => $request->timeInterval,
             'quantity' => $request->quantity,
             'product_id' => $request->productId,
-            'user_id' => $request->userId,
+            'user_id' => Auth::id(),
         ]);
 
         $viewData = [];

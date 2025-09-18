@@ -6,7 +6,7 @@
 @section('content')
 <h1 class="title dark-blue">{{ __('wishlist/create.title') }}</h1>
 <div class="form-container flex center">
-  <form action="{{ route('wishlist.save', $viewData['user']->getId()) }}" method="POST" class="form-box flex column center dark-blue">
+  <form action="{{ route('wishlist.save') }}" method="POST" class="form-box flex column center dark-blue">
     @csrf
     @method('POST')
     <label for="name">{{ __('wishlist/create.name') }}</label>
