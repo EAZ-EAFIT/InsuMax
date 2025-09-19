@@ -11,19 +11,20 @@
     <p class="white">{{ $viewData['product']->getDescription() }}</p>
 
     <div class="qty-price-container flex center">
-      <form id="product-qty" action="#" method="POST">
+      <form id="product-qty" action="{{ route('cart.add') }}" method="POST">
         @csrf
+        <input type="hidden" name="id" value="{{ $viewData['product']->getId() }}">
         <div class="flex center">
           <button class="qty-btn flex center" id="decrement" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M5 12H19" stroke="#1B2632" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </button>
-          
+
           <div class="qty-container flex center">
             <input type="number" id="quantity" name="quantity" min="1" value="1">
           </div>
-          
+  
           <button class="qty-btn flex center" id="increment" type="button">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
               <path d="M12 5V19" stroke="#1B2632" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>

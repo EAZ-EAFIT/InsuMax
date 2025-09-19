@@ -24,7 +24,7 @@ class Item extends Model
      * this->order - Order- contains the associated order
      * this->product - Product - contains the associated product
      */
-    protected $fillable = ['quantity', 'price'];
+    protected $fillable = ['quantity', 'price', 'product_id', 'order_id'];
 
     public static function validate(Request $request): void
     {
