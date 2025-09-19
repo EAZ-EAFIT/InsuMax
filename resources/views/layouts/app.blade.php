@@ -49,7 +49,7 @@
           {{ __('layout/app.notifications') }}
         </a>
 
-        <a href="#">
+        <a href="{{ route('cart.index') }}">
           <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
             <path d="M10.8751 26.5834C11.5424 26.5834 12.0834 26.0424 12.0834 25.375C12.0834 24.7077 11.5424 24.1667 10.8751 24.1667C10.2077 24.1667 9.66675 24.7077 9.66675 25.375C9.66675 26.0424 10.2077 26.5834 10.8751 26.5834Z" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M24.1666 26.5834C24.8339 26.5834 25.3749 26.0424 25.3749 25.375C25.3749 24.7077 24.8339 24.1667 24.1666 24.1667C23.4992 24.1667 22.9583 24.7077 22.9583 25.375C22.9583 26.0424 23.4992 26.5834 24.1666 26.5834Z" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

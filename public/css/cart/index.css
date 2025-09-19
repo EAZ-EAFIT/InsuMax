@@ -1,0 +1,77 @@
+main h1 {
+  margin: 50px 50px;
+}
+
+.cart-header {
+  margin: 0 100px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dark-blue);
+}
+
+.grid {
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  margin-bottom: 15px;
+}
+
+.product-wrapper {
+  border-bottom: 1px solid var(--dark-blue);
+  margin: 0 100px 15px 100px;
+  padding: 10px 0;
+}
+
+.product-container {
+  gap: 10px;
+}
+
+img {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+}
+
+main span, 
+main p,
+main a,
+main button {
+  font-size: 16px;
+}
+
+.delete-btn {
+  font-family: "Raleway", sans-serif;
+  background: none;
+  border: none;
+  font-weight: 300;
+  gap: 5px;
+  margin: 0 50px 10px auto;
+  cursor: pointer;
+}
+
+.delete-btn svg {
+  height: 20px;
+  width: 20px;
+}
+
+.checkout-container {
+  margin: 0 100px 50px auto;
+  width: 280px;
+  gap: 30px;
+}
+
+.checkout-container p {
+  margin: 20px 0;
+}
+
+.btn-checkout {
+  font-family: "Raleway", sans-serif;
+}
+
+.btn-remove-all {
+  background-color: var(--brown);
+  transition: opacity 0.3s ease;
+}
+
+.btn-remove-all:hover {
+  background-color: var(--brown);
+  opacity: 0.9;
+}

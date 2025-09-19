@@ -37,6 +37,7 @@ class NotificationController extends Controller
     {
         $viewData = [];
         $viewData['product'] = Product::findOrFail($id);
+        $viewData['user'] = Auth::user();
 
         return view('notification.set')->with('viewData', $viewData);
     }
