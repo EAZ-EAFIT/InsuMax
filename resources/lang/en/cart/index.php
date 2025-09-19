@@ -1,14 +1,15 @@
 <?php
 
 return [
-    'title' => 'Cart',
-    'subtitle' => 'Your selected medical supplies',
-    'itemList' => 'Products in cart',
-    'itemName' => 'Name:',
-    'itemPrice' => 'Price:',
-    'itemDescription' => 'Description:',
-    'itemQuantity' => 'Quantity:',
-    'emptyCart' => 'Your cart is empty',
-    'removeAll' => 'Remove all products from cart',
-    'checkout' => 'Proceed to checkout',
+    'title' => 'Cart - InsuMax',
+    'subtitle' => 'Your cart',
+    'product' => 'Product',
+    'price' => 'Price',
+    'quantity' => 'Quantity',
+    'currency' => '$',
+    'removeProduct' => 'Remove',
+    'total' => 'Your total:',
+    'checkout' => 'Checkout',
+    'removeAllProducts' => 'Remove all products from cart',
+    'empty' => 'Your cart is empty',
 ];
