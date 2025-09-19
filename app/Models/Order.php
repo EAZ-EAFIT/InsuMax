@@ -21,13 +21,12 @@ class Order extends Model
      * $this->attributes['id'] - int - contains the order primary key (id)
      * $this->attributes['total'] - int - contains the order total
      * $this->attributes['has_shipped'] - bool - indicates if the order has shipped
-     * $this->attributes['payment_type'] - string - contains the payment type
      * $this->attributes['created_at'] - string - contains the timestamp of creation
      * $this->attributes['updated_at'] - string - contains the timestamp of updates
      * $this->user - User - contains the associated user
      * $this->items - Item[] - contains the associated items
      */
-    protected $fillable = ['total', 'has_shipped', 'payment_type', 'user_id'];
+    protected $fillable = ['has_shipped', 'user_id', 'total', 'payment_type'];
 
     public static function validate(Request $request): void
     {
@@ -52,11 +51,6 @@ class Order extends Model
     public function getHasShipped(): bool
     {
         return $this->attributes['has_shipped'];
-    }
-
-    public function getPaymentType(): string
-    {
-        return $this->attributes['payment_type'];
     }
 
     public function getCreatedAt(): string
@@ -89,11 +83,6 @@ class Order extends Model
         $this->attributes['has_shipped'] = $hasShipped;
     }
 
-    public function setPaymentType(string $paymentType): void
-    {
-        $this->attributes['payment_type'] = $paymentType;
-    }
-
     public function setUser(User $user): void
     {
         $this->user = $user;
@@ -101,7 +90,7 @@ class Order extends Model
 
     public function setItems(Collection $items): void
     {
-        $this->items = $items;
+        $this->items()->saveMany($items);
     }
 
     public function user(): BelongsTo

@@ -7,9 +7,8 @@
     <div>
         <p><strong>Date:</strong> {{ $viewData['order']->getCreatedAt() }}</p>
         <p><strong>Total:</strong> ${{ $viewData['order']->getTotal() }}</p>
-        <p><strong>Payment Type:</strong> {{ $viewData['order']->getPaymentType() }}</p>
         <p><strong>Status:</strong> {{ $viewData['order']->getHasShipped() ? 'Shipped' : 'Pending' }}</p>
-        <p><strong>Customer:</strong> {{ $viewData['order']->getCustomer()->getName() }}</p>
+        <p><strong>Customer:</strong> {{ $viewData['order']->getUser()->getName() }}</p>
         <h3>Items</h3>
         <ul>
             @foreach ($viewData['order']->getItems() as $item)

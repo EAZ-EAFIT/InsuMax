@@ -14,6 +14,7 @@ $WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\WishlistController';
 $PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\ProductController';
 $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
 $NOTIFICATION_CONTROLLER_PATH = 'App\Http\Controllers\NotificationController';
+$CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';
 
 Route::get('/', $HOME_CONTROLLER_PATH.'@index')->name('home.index');
 
@@ -51,11 +52,16 @@ Route::get('/notification/edit/{id}', $NOTIFICATION_CONTROLLER_PATH.'@edit')->na
 Route::put('/notification/edit/{id}/update', $NOTIFICATION_CONTROLLER_PATH.'@update')->name('notification.update');
 Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delete')->name('notification.delete');
 
+Route::get('/cart', $CART_CONTROLLER_PATH.'@index')->name('cart.index');
+Route::post('/cart/add/', $CART_CONTROLLER_PATH.'@add')->name('cart.add');
+Route::get('/cart/removeAll/', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
+Route::get('/cart/checkout/', $CART_CONTROLLER_PATH.'@checkout')->name('cart.checkout');
+
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';
     $ADMIN_PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminProductController';
     $ADMIN_WISHLIST_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminWishlistController';
-    
+
     Route::get('/admin', $ADMIN_HOME_CONTROLLER_PATH.'@index')->name('admin.home.index');
     Route::get('/admin/products', $ADMIN_PRODUCT_CONTROLLER_PATH.'@index')->name('admin.product.index');
     Route::get('/admin/products/create', $ADMIN_PRODUCT_CONTROLLER_PATH.'@create')->name('admin.product.create');
