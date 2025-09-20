@@ -21,7 +21,7 @@ class Item extends Model
      * $this->attributes['price'] - int - contains the item price
      * $this->attributes['created_at'] - string - contains the timestamp of creation
      * $this->attributes['updated_at'] - string - contains the timestamp of updates
-     * this->order - Order- contains the associated order
+     * this->order - Order - contains the associated order
      * this->product - Product - contains the associated product
      */
     protected $fillable = ['quantity', 'price', 'product_id', 'order_id'];
@@ -44,9 +44,9 @@ class Item extends Model
         return $this->attributes['quantity'];
     }
 
-    public function getPrice(): int
+    public function getPrice(): float
     {
-        return $this->attributes['price'];
+        return $this->attributes['price']/100;
     }
 
     public function getCreatedAt(): string

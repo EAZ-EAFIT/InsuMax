@@ -53,9 +53,18 @@ Route::put('/notification/edit/{id}/update', $NOTIFICATION_CONTROLLER_PATH.'@upd
 Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delete')->name('notification.delete');
 
 Route::get('/cart', $CART_CONTROLLER_PATH.'@index')->name('cart.index');
-Route::post('/cart/add/', $CART_CONTROLLER_PATH.'@add')->name('cart.add');
-Route::get('/cart/removeAll/', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
-Route::get('/cart/checkout/', $CART_CONTROLLER_PATH.'@checkout')->name('cart.checkout');
+Route::post('/cart/add/{id}', $CART_CONTROLLER_PATH.'@add')->name('cart.add');
+Route::get('/cart/remove/{id}', $CART_CONTROLLER_PATH.'@remove')->name('cart.remove');
+Route::get('/cart/removeAll', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
+
+Route::middleware('auth')->group(function (){
+    $CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';
+    $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
+
+    Route::get('/cart/checkout', $CART_CONTROLLER_PATH.'@checkout')->name('cart.checkout');
+    Route::get('/orders', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
+});
+
 
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';

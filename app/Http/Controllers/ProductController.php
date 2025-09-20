@@ -16,7 +16,7 @@ class ProductController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['products'] = Product::all();
+        $viewData['products'] = Product::paginate(18);
 
         return view('product.index')->with('viewData', $viewData);
     }

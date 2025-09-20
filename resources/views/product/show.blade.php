@@ -11,8 +11,9 @@
     <p class="white">{{ $viewData['product']->getDescription() }}</p>
 
     <div class="qty-price-container flex center">
-      <form id="product-qty" action="{{ route('cart.add') }}" method="POST">
+      <form id="product-qty" action="{{ route('cart.add', ['id'=> $viewData['product']->getId()]) }}" method="POST">
         @csrf
+        @method('POST')
         <input type="hidden" name="id" value="{{ $viewData['product']->getId() }}">
         <div class="flex center">
           <button class="qty-btn flex center" id="decrement" type="button">

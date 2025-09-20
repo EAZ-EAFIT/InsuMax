@@ -1,34 +1,44 @@
 @extends('layouts.app')
-@section('title', 'Orders')
+@section('styles')
+<link rel="stylesheet" href="{{ asset('/css/order/index.css') }}">
+@endsection
+@section('title', __('order/index.title'))
 @section('content')
-    <header>
-        <h1>Orders</h1>
-    </header>
-    <div>
-        <a href="{{ route('order.create') }}">Create Order</a>
-        <ul>
-            @foreach ($viewData['orders'] as $order)
-                <li>
-                    <a href="{{ route('order.show', $order->getId()) }}">
-                        Order #{{ $order->getId() }} - {{ $order->getCreatedAt() }} - ${{ $order->getTotal() }}
-                    </a>
-                    <form action="{{ route('order.delete', $order->getId()) }}" method="POST" style="display:inline;">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Delete</button>
-                    </form>
-                    @if(!$order->getHasShipped())
-                        <form action="{{ route('order.cancel', $order->getId()) }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="submit">Cancel</button>
-                        </form>
-                        <form action="{{ route('order.pay', $order->getId()) }}" method="POST" style="display:inline;">
-                            @csrf
-                            <button type="submit">Pay</button>
-                        </form>
-                    @endif
-                </li>
-            @endforeach
-        </ul>
+<h1 class="dark-blue">{{ __('order/index.subtitle') }}</h1>
+
+@forelse ($viewData['orders'] as $order)
+<div>
+  <div class="order-details flex column">
+    <h2 class="dark-blue">{{ __('order/index.orderNumber') }}{{ $order->getId() }}</h2>
+    <p class="light-blue semibold">{{ __('order/index.date') }} <span class="regular">{{ $order->getCreatedAt() }}</span></p>
+    <p class="light-blue semibold">{{ __('order/index.total') }} <span class="regular">{{ $order->getTotal() }}</span></p>
+  </div>
+
+  <div class="order-header grid">
+    <p class="dark-blue bold">{{ __('order/index.itemId') }}</p>
+    <p class="dark-blue bold">{{ __('order/index.productName') }}</p>
+    <p class="dark-blue bold">{{ __('order/index.price') }}</p>
+    <p class="dark-blue bold">{{ __('order/index.quantity') }}</p>
+  </div>
+  @foreach ($order->getItems() as $item)
+  <div class="item-wrapper flex column">
+    <div class="grid">
+      <span class="light-blue">{{ $item->getId() }}</span>
+
+      <a href="{{ route('product.show', ['id'=> $item->getProduct()->getId()])}}" class="brown">
+        {{ $item->getProduct()->getName() }}
+      </a>
+
+      <span class="light-blue">{{ $item->getPrice() }}</span>
+
+      <span class="light-blue">{{ $item->getQuantity() }}</span>
     </div>
+  </div>
+  @endforeach
+</div>
+@empty
+<div class="flex center light-blue">
+  <h3>{{ __('order/index.empty') }}</h3>
+</div>
+@endforelse
 @endsection
