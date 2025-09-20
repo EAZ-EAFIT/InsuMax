@@ -35,6 +35,7 @@ Route::delete('/wishlist/delete/{id}', $WISHLIST_CONTROLLER_PATH.'@delete')->nam
 
 Route::get('/product', $PRODUCT_CONTROLLER_PATH.'@index')->name('product.index');
 Route::get('/product/{id}', $PRODUCT_CONTROLLER_PATH.'@show')->name('product.show');
+Route::get('/product-search', $PRODUCT_CONTROLLER_PATH.'@search')->name('product.search');
 
 Route::get('/order', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
 Route::get('/order/create', $ORDER_CONTROLLER_PATH.'@create')->name('order.create');
@@ -46,6 +47,7 @@ Route::post('/order/pay/{id}', $ORDER_CONTROLLER_PATH.'@pay')->name('order.pay')
 
 Route::get('/notification', $NOTIFICATION_CONTROLLER_PATH.'@index')->name('notification.index');
 Route::get('/notification/create', $NOTIFICATION_CONTROLLER_PATH.'@create')->name('notification.create');
+Route::get('/notification/create/search-product', $NOTIFICATION_CONTROLLER_PATH.'@searchProduct')->name('notification.searchProduct');
 Route::get('/notification/set/{id}', $NOTIFICATION_CONTROLLER_PATH.'@set')->name('notification.set');
 Route::post('/notification/save', $NOTIFICATION_CONTROLLER_PATH.'@save')->name('notification.save');
 Route::get('/notification/edit/{id}', $NOTIFICATION_CONTROLLER_PATH.'@edit')->name('notification.edit');

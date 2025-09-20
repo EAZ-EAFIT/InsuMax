@@ -33,6 +33,16 @@ class NotificationController extends Controller
         return view('notification.create')->with('viewData', $viewData);
     }
 
+    public function searchProduct(Request $request): View
+    {
+        $search = $request->input('query');
+
+        $viewData = [];
+        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->paginate(9);
+
+        return view('notification.create')->with('viewData', $viewData);
+    }
+
     public function set(int $id): View
     {
         $viewData = [];

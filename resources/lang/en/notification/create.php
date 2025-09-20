@@ -9,4 +9,5 @@ return [
     'three' => '3',
     'stepThree' => 'Confirmation',
     'placeholder' => 'Search a product',
+    'empty' => 'No matching products found',
 ];
