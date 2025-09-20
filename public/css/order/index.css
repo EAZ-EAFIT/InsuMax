@@ -1,0 +1,41 @@
+main h1,
+.order-details {
+  margin: 50px;
+}
+
+.order-details {
+  gap: 5px;
+}
+
+.order-header {
+  margin: 0 100px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--dark-blue);
+}
+
+.grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  justify-items: center;
+  margin-bottom: 15px;
+}
+
+.item-wrapper {
+  border-bottom: 1px solid var(--dark-blue);
+  margin: 0 100px 15px 100px;
+  padding: 10px 0;
+}
+
+main span, 
+main p,
+main a,
+main button {
+  font-size: 16px;
+}
+
+main a{
+  text-decoration: underline;
+}
+
+footer {
+  margin-top: 50px;
+}

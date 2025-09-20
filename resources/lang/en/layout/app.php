@@ -2,6 +2,7 @@
 
 return [
     'products' => 'Products',
+    'orders' => 'Orders',
     'notifications' => 'Notifications',
     'cart' => 'Cart',
     'wishlists' => 'Wishlists',

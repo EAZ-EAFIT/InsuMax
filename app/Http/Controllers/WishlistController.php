@@ -21,7 +21,7 @@ class WishlistController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['wishlists'] = Wishlist::with('products')->where('user_id', Auth::id())->get();
+        $viewData['wishlists'] = Wishlist::with('products')->where('user_id', Auth::user()->getId())->get();
 
         return view('wishlist.index')->with('viewData', $viewData);
     }
@@ -43,7 +43,7 @@ class WishlistController extends Controller
     public function addOptions(int $productId): View|RedirectResponse
     {
         $viewData = [];
-        $viewData['wishlists'] = Wishlist::where('user_id', Auth::id())->get();
+        $viewData['wishlists'] = Wishlist::where('user_id', Auth::user()->getId())->get();
         $viewData['product'] = Product::findOrFail($productId);
 
         return view('wishlist.addOptions')->with('viewData', $viewData);
@@ -51,7 +51,7 @@ class WishlistController extends Controller
 
     public function addProduct(Request $request): RedirectResponse
     {
-        $wishlist = Wishlist::where('user_id', Auth::id())->where('id', $request->wishlistId)->firstOrFail();
+        $wishlist = Wishlist::where('user_id', Auth::user()->getId())->where('id', $request->wishlistId)->firstOrFail();
         $product = Product::findOrFail($request->productId);
         $wishlist->addProduct($product);
         $wishlist->save();
@@ -61,7 +61,7 @@ class WishlistController extends Controller
 
     public function deleteProduct(Request $request): RedirectResponse
     {
-        $wishlist = Wishlist::where('user_id', Auth::id())->where('id', $request->wishlistId)->firstOrFail();
+        $wishlist = Wishlist::where('user_id', Auth::user()->getId())->where('id', $request->wishlistId)->firstOrFail();
         $product = Product::findOrFail($request->productId);
         $wishlist->removeProduct($product);
         $wishlist->save();
@@ -77,7 +77,7 @@ class WishlistController extends Controller
     public function save(Request $request): RedirectResponse
     {
         Wishlist::validate($request);
-        Wishlist::create(['name' => $request->name, 'user_id' => Auth::id()]);
+        Wishlist::create(['name' => $request->name, 'user_id' => Auth::user()->getId()]);
 
         return redirect()->route('wishlist.index');
     }

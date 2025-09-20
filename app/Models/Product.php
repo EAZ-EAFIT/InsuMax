@@ -43,6 +43,16 @@ class Product extends Model
         ]);
     }
 
+    public static function sumPricesByQuantities(Collection $products, array $productsInSession): float
+    {
+        $total = 0;
+        foreach ($products as $product) {
+            $total = $total + ($product->getPrice() * 100 * $productsInSession[$product->getId()]);
+        }
+
+        return $total / 100;
+    }
+
     public function getId(): int
     {
         return $this->attributes['id'];

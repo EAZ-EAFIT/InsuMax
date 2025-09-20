@@ -31,4 +31,5 @@
 	</div>
 	@endforeach
 </div>
+{{ $viewData['products']->links() }}
 @endsection
