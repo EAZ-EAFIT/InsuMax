@@ -1,0 +1,13 @@
+main h1 {
+  margin: 50px;
+}
+
+.container {
+  height: 50%;
+  gap: 10px;
+}
+
+.container svg {
+  height: 100px;
+  width: 100px;
+}

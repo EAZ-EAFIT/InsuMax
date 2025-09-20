@@ -5,83 +5,94 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CartController extends Controller
 {
     public function index(Request $request): View
     {
-        $cartItems = $request->session()->get('cart_item_data');
+        $total = 0;
+        $productsInCart = [];
+
+        $productsInSession = $request->session()->get('cartProducts');
+        if ($productsInSession) {
+            $productsInCart = Product::findMany(array_keys($productsInSession));
+            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+        }
 
         $viewData = [];
-        $viewData['cartItems'] = $cartItems;
+        $viewData['products'] = $productsInCart;
+        $viewData['total'] = $total;
 
         return view('cart.index')->with('viewData', $viewData);
     }
 
-    public function add(Request $request): RedirectResponse
+    public function add(Request $request, int $id): RedirectResponse
     {
+        $products = $request->session()->get('cartProducts');
+        $products[$id] = $request->quantity;
+        $request->session()->put('products', $products);
 
-        $productId = $request->id;
-        $quantity = $request->quantity;
-        $product = Product::findOrFail($productId);
+        return back();
+    }
 
-        $item = [
-            'product_id' => $productId,
-            'name' => $product->getName(),
-            'description' => $product->getDescription(),
-            'quantity' => $quantity,
-        ];
+    public function remove(Request $request, int $id): RedirectResponse
+    {
+        $products = $request->session()->get('cartProducts');
 
-        $cartItemData = $request->session()->get('cart_item_data');
-        $item['price'] = $product->getPrice() * $item['quantity'];
-
-        $cartItemData[$item['product_id']] = $item;
-
-        $request->session()->put('cart_item_data', $cartItemData);
+        if (isset($products[$id])) {
+            unset($products[$id]);
+            $request->session()->put('products', $products);
+        }
 
         return back();
     }
 
     public function removeAll(Request $request): RedirectResponse
     {
-        $request->session()->forget('cart_item_data');
+        $request->session()->forget('cartProducts');
 
         return back();
     }
 
-    public function checkout(Request $request): RedirectResponse
+    public function checkout(Request $request): View
     {
-        $cartItems = $request->session()->get('cart_item_data');
-        $orderItems = [];
-
-        $order = Order::create([
-            'has_shipped' => false,
-            'user_id' => auth()->id(),
-            'total' => 0, // Will be calculated later
-        ]);
-
-        foreach ($cartItems as $itemData) {
-            $product = Product::findOrFail($itemData['product_id']);
-            $item = Item::create([
-                'product_id' => $itemData['product_id'],
-                'order_id' => $order->getId(),
-                'quantity' => $itemData['quantity'],
-                'price' => $itemData['price'],
+        $user = Auth::user();
+        $productsInSession = $request->session()->get('cartProducts');
+        if ($productsInSession) {
+            $productsInCart = Product::findMany(array_keys($productsInSession));
+            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+            $order = Order::create([
+                'has_shipped' => false,
+                'user_id' => $user->getId(),
+                'total' => $total,
             ]);
-            $item->save();
-            $orderItems[] = $item;
+
+            foreach ($productsInCart as $product) {
+                Item::create([
+                    'product_id' => $product->getId(),
+                    'order_id' => $order->getId(),
+                    'quantity' => $productsInSession[$product->getId()],
+                    'price' => $product->getPrice() * 100,
+                    // Revisar el getPrice de product que siempre se divide por 100
+                ]);
+            }
+
+            $newBalance = $user->getBalance() - $total;
+            $user->setBalance($newBalance);
+            $user->save();
+
+            $request->session()->forget('cartProducts');
+
+            $viewData = [];
+            $viewData['order'] = $order;
+
+            return view('cart.checkout')->with('viewData', $viewData);
+        } else {
+            return view('cart.index');
         }
-
-        $order->setItems(new Collection($orderItems));
-        $order->calculateTotal();
-        $order->save();
-
-        $request->session()->forget('cart_item_data');
-
-        return redirect()->route('cart.index');
     }
 }

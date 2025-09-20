@@ -13,5 +13,9 @@ btnDecrement.addEventListener("click", () => {
 
 btnIncrement.addEventListener("click", () => {
   let currentValue = parseInt(input.value) || 1;
-  input.value = currentValue + 1;
+  const max = parseInt(input.max) || 1;
+
+  if (currentValue < max){
+    input.value = currentValue + 1;
+  }
 });

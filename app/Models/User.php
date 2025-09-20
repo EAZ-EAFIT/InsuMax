@@ -32,6 +32,9 @@ class User extends Authenticatable
      * $this->attributes['role'] - string - contains the user role (customer or admin)
      * $this->attributes['created_at'] - timestamp - contains the user creation date
      * $this->attributes['updated_at'] - timestamp - contains the user update date
+     * $this->attributes['orders'] - Order[] - contains the associated orders
+     * $this->attributes['wishlists'] - Wishlist[] - contains the associated wishlists
+     * $this->attributes['notifications'] - Notification[] - contains the associated notifications
      */
 
     /**

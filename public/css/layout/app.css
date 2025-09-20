@@ -52,15 +52,15 @@ header {
   border-radius: 2px;
 }
 
-nav {
+.nav-wrapper {
   margin-left: auto;
 }
 
-nav.collapsed {
+.nav-wrapper.collapsed {
   display: none;
 }
 
-nav.show {
+.nav-wrapper.show {
   display: flex !important;
 }
 
@@ -117,12 +117,12 @@ footer {
   }
 }
 
-@media (max-width: 870px) {
+@media (max-width: 905px) {
   .hamburger {
     display: flex;
   }
 
-  nav {
+  .nav-wrapper {
     display: none;
     position: absolute;
     top: 60px;
@@ -178,7 +178,7 @@ footer {
     text-align: center;
   }
 
-  nav {
+  .nav-wrapper {
     margin-left: 0;
     flex-direction: column;
     gap: var(--gap-xl);
@@ -217,7 +217,7 @@ footer {
     font-size: 26px;
   }
 
-  nav {
+  .nav-wrapper {
     top: 32.5px;
     gap: var(--gap-md);
   }

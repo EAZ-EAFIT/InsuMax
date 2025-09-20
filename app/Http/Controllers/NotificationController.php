@@ -20,7 +20,7 @@ class NotificationController extends Controller
     public function index(): View
     {
         $viewData = [];
-        $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::id())->get();
+        $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::user()->getId())->get();
 
         return view('notification.index')->with('viewData', $viewData);
     }
@@ -29,6 +29,16 @@ class NotificationController extends Controller
     {
         $viewData = [];
         $viewData['products'] = Product::paginate(9);
+
+        return view('notification.create')->with('viewData', $viewData);
+    }
+
+    public function searchProduct(Request $request): View
+    {
+        $search = $request->input('query');
+
+        $viewData = [];
+        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->paginate(9);
 
         return view('notification.create')->with('viewData', $viewData);
     }
@@ -51,7 +61,7 @@ class NotificationController extends Controller
             'time_interval' => $request->timeInterval,
             'quantity' => $request->quantity,
             'product_id' => $request->productId,
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user()->getId(),
         ]);
 
         $viewData = [];

@@ -30,7 +30,7 @@
       <span></span>
     </button>
 
-    <nav class="flex center" id="nav-menu">
+    <nav class="nav-wrapper flex center" id="nav-menu">
       <div class="nav-container flex center">
         <a href="{{ route('product.index') }}">
           <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
@@ -39,6 +39,14 @@
             <path d="M19.3334 12.0833C19.3334 13.3652 18.8242 14.5946 17.9178 15.501C17.0113 16.4074 15.782 16.9166 14.5001 16.9166C13.2182 16.9166 11.9888 16.4074 11.0824 15.501C10.176 14.5946 9.66675 13.3652 9.66675 12.0833" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           </svg>
           {{ __('layout/app.products') }}
+        </a>
+
+        <a href="{{ route('order.index') }}">
+          <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 29 29" fill="none">
+            <path d="M19.3333 4.8335H21.75C22.3909 4.8335 23.0056 5.08811 23.4588 5.54132C23.9121 5.99453 24.1667 6.60922 24.1667 7.25016V24.1668C24.1667 24.8078 23.9121 25.4225 23.4588 25.8757C23.0056 26.3289 22.3909 26.5835 21.75 26.5835H7.25C6.60906 26.5835 5.99437 26.3289 5.54116 25.8757C5.08794 25.4225 4.83333 24.8078 4.83333 24.1668V7.25016C4.83333 6.60922 5.08794 5.99453 5.54116 5.54132C5.99437 5.08811 6.60906 4.8335 7.25 4.8335H9.66667" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M18.125 2.4165H10.875C10.2077 2.4165 9.66667 2.95749 9.66667 3.62484V6.0415C9.66667 6.70885 10.2077 7.24984 10.875 7.24984H18.125C18.7923 7.24984 19.3333 6.70885 19.3333 6.0415V3.62484C19.3333 2.95749 18.7923 2.4165 18.125 2.4165Z" stroke="#EEE9DF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          {{ __('layout/app.orders') }}
         </a>
 
         <a href="{{ route('notification.index') }}">

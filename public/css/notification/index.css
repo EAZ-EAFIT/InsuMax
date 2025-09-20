@@ -60,9 +60,13 @@ main button {
   width: 20px;
 }
 
-.add-cart-btn {
+.add-cart-form {
   margin-right: auto;
   margin-left: 30px;
+}
+
+.add-cart-btn{
+  font-family: "Raleway", sans-serif;
   gap: 10px;
 }
 

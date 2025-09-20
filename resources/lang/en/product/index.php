@@ -6,4 +6,5 @@ return [
     'placeholder' => 'Search a product',
     'shop' => 'Shop',
     'currency' => '$',
+    'empty' => 'No products were found',
 ];
