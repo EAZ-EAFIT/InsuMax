@@ -57,14 +57,13 @@ Route::post('/cart/add/{id}', $CART_CONTROLLER_PATH.'@add')->name('cart.add');
 Route::get('/cart/remove/{id}', $CART_CONTROLLER_PATH.'@remove')->name('cart.remove');
 Route::get('/cart/removeAll', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
 
-Route::middleware('auth')->group(function (){
+Route::middleware('auth')->group(function () {
     $CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';
     $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
 
     Route::get('/cart/checkout', $CART_CONTROLLER_PATH.'@checkout')->name('cart.checkout');
     Route::get('/orders', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
 });
-
 
 Route::middleware('admin')->group(function () {
     $ADMIN_HOME_CONTROLLER_PATH = 'App\Http\Controllers\Admin\AdminHomeController';

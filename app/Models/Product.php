@@ -47,10 +47,10 @@ class Product extends Model
     {
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice()*100*$productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * 100 * $productsInSession[$product->getId()]);
         }
 
-        return $total/100;
+        return $total / 100;
     }
 
     public function getId(): int

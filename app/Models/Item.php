@@ -46,7 +46,7 @@ class Item extends Model
 
     public function getPrice(): float
     {
-        return $this->attributes['price']/100;
+        return $this->attributes['price'] / 100;
     }
 
     public function getCreatedAt(): string

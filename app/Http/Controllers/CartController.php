@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class CartController extends Controller
@@ -18,7 +18,7 @@ class CartController extends Controller
         $productsInCart = [];
 
         $productsInSession = $request->session()->get('products');
-        if($productsInSession) {
+        if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
         }
@@ -62,7 +62,7 @@ class CartController extends Controller
     {
         $user = Auth::user();
         $productsInSession = $request->session()->get('products');
-        if($productsInSession) {
+        if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
             $order = Order::create([
@@ -76,7 +76,7 @@ class CartController extends Controller
                     'product_id' => $product->getId(),
                     'order_id' => $order->getId(),
                     'quantity' => $productsInSession[$product->getId()],
-                    'price' => $product->getPrice()*100,
+                    'price' => $product->getPrice() * 100,
                     // Revisar el getPrice de product que siempre se divide por 100
                 ]);
             }
