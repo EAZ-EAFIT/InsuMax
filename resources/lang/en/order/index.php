@@ -10,5 +10,6 @@ return [
     'productName' => 'Product Name',
     'price' => 'Price',
     'quantity' => 'Quantity',
+    'currency' => '$',
     'empty' => 'Seems like you haven\'t purchased anything yet',
 ];

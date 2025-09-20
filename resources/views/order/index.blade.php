@@ -29,7 +29,7 @@
         {{ $item->getProduct()->getName() }}
       </a>
 
-      <span class="light-blue">{{ $item->getPrice() }}</span>
+      <span class="light-blue">{{ __('order/index.currency') }}{{ $item->getPrice() }}</span>
 
       <span class="light-blue">{{ $item->getQuantity() }}</span>
     </div>
