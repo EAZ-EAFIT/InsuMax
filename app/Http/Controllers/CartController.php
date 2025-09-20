@@ -17,7 +17,7 @@ class CartController extends Controller
         $total = 0;
         $productsInCart = [];
 
-        $productsInSession = $request->session()->get('products');
+        $productsInSession = $request->session()->get('cartProducts');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
@@ -32,7 +32,7 @@ class CartController extends Controller
 
     public function add(Request $request, int $id): RedirectResponse
     {
-        $products = $request->session()->get('products');
+        $products = $request->session()->get('cartProducts');
         $products[$id] = $request->quantity;
         $request->session()->put('products', $products);
 
@@ -41,7 +41,7 @@ class CartController extends Controller
 
     public function remove(Request $request, int $id): RedirectResponse
     {
-        $products = $request->session()->get('products');
+        $products = $request->session()->get('cartProducts');
 
         if (isset($products[$id])) {
             unset($products[$id]);
@@ -53,7 +53,7 @@ class CartController extends Controller
 
     public function removeAll(Request $request): RedirectResponse
     {
-        $request->session()->forget('products');
+        $request->session()->forget('cartProducts');
 
         return back();
     }
@@ -61,7 +61,7 @@ class CartController extends Controller
     public function checkout(Request $request): View
     {
         $user = Auth::user();
-        $productsInSession = $request->session()->get('products');
+        $productsInSession = $request->session()->get('cartProducts');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
@@ -85,7 +85,7 @@ class CartController extends Controller
             $user->setBalance($newBalance);
             $user->save();
 
-            $request->session()->forget('products');
+            $request->session()->forget('cartProducts');
 
             $viewData = [];
             $viewData['order'] = $order;

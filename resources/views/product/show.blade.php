@@ -23,7 +23,7 @@
           </button>
 
           <div class="qty-container flex center">
-            <input type="number" id="quantity" name="quantity" min="1" value="1">
+            <input type="number" id="quantity" name="quantity" min="1" max="{{ $viewData['product']->getInventory() }}" value="1">
           </div>
   
           <button class="qty-btn flex center" id="increment" type="button">
@@ -37,7 +37,11 @@
       <p class="white semibold">{{ __('product/show.currency') }}{{ $viewData['product']->getPrice() }}{{ __('product/show.unit') }}</p>
     </div>
 
+    @if ($viewData['product']->getInventory() > 0)
     <button type="submit" form="product-qty" class="btn">{{ __('product/show.addCart') }}</button>
+    @else
+    <p class="yellow">{{ __('product/show.noStock') }}</p>
+    @endif
 
     <a href="{{ route('wishlist.addOptions', $viewData['product']->getId()) }}" class="white flex center">
       <div class="heart-btn white-bg flex center">
