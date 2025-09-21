@@ -8,7 +8,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\View\View;

@@ -3,9 +3,9 @@
 namespace App\Utils;
 
 use App\Models\Product;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\Collection;
 
 class Utils
 {
@@ -17,7 +17,7 @@ class Utils
     public static function storeImage(Request $request, Product $product): void
     {
         if ($request->hasFile('image')) {
-            $imageName = $product->getId() . '.' . $request->file('image')->extension();
+            $imageName = $product->getId().'.'.$request->file('image')->extension();
             Storage::disk('public')->put(
                 $imageName,
                 file_get_contents($request->file('image')->getRealPath())
@@ -48,8 +48,7 @@ class Utils
             $savedProduct->save();
 
             return $maxQuantity;
-        }
-        else {
+        } else {
             $savedProduct->setInventory($maxQuantity - $requestedQuantity);
             $savedProduct->save();
 
@@ -60,7 +59,7 @@ class Utils
     public static function restockUnit(int $id, int $quantity): void
     {
         $productToRestock = Product::findOrFail($id);
-        $productToRestock->setInventory($productToRestock->getInventory() + $quantity) ;
+        $productToRestock->setInventory($productToRestock->getInventory() + $quantity);
     }
 
     public static function restockAll(array $productsInCart)
