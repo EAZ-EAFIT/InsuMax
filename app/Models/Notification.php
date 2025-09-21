@@ -100,22 +100,4 @@ class Notification extends Model
     {
         return $this->belongsTo(User::class);
     }
-
-    public function notify(): void
-    {
-        $user = $this->getUser();
-
-        $toEmail = $user->getEmail();
-        $subject = 'Product Notification';
-        $message = 'Hello '.$user->getName().",\n\n"
-            .'This is a reminder for the product: '.$this->getProduct()->getName().".\n"
-            .'Quantity: '.$this->getQuantity()."\n"
-            .'Notification Date: '.$this->getNotificationDate()."\n\n"
-            .'Thank you for using our service!';
-
-        \Mail::raw($message, function ($mail) use ($toEmail, $subject) {
-            $mail->to($toEmail)
-                ->subject($subject);
-        });
-    }
 }

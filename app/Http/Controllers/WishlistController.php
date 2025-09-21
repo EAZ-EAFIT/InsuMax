@@ -26,20 +26,6 @@ class WishlistController extends Controller
         return view('wishlist.index')->with('viewData', $viewData);
     }
 
-    public function show(int $id): View
-    {
-        // TEST USER, ALWAYS THE SAME
-        $user = User::findOrFail(1);
-
-        $wishlist = Wishlist::with('products')->where('user_id', $user->getId())->where('id', $id)->firstOrFail();
-
-        $viewData = [];
-        $viewData['wishlist'] = $wishlist;
-        $viewData['user'] = $user;
-
-        return view('wishlist.show')->with('viewData', $viewData);
-    }
-
     public function addOptions(int $productId): View|RedirectResponse
     {
         $viewData = [];

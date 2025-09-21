@@ -16,6 +16,22 @@
 </form>
 </div>
 
+<div class="filters flex">
+	<p class="dark-blue">{{ __('product/index.order') }}</p>
+	<a href="{{ route('product.sortPrice') }}" class="filter-btn">
+		{!! __('product/index.sortPrice') !!}
+	</a>
+	<a href="{{ route('product.sortName') }}" class="filter-btn">
+		{!! __('product/index.sortName') !!}
+	</a>
+	<a href="{{ route('product.sortInventory') }}" class="filter-btn">
+		{!! __('product/index.sortInventory') !!}
+	</a>
+	<a href="{{ route('product.sortRecentlyAdded') }}" class="filter-btn">
+		{{ __('product/index.sortRecent') }}
+	</a>
+</div>
+
 <div class="products-container grid">
 	@forelse ($viewData['products'] as $product)
 	<div class="product-card dark-blue-bg">

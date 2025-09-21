@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
+use App\Utils\Utils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,13 +15,12 @@ class CartController extends Controller
 {
     public function index(Request $request): View
     {
-        $total = 0;
         $productsInCart = [];
 
-        $productsInSession = $request->session()->get('cartProducts');
+        $productsInSession = $request->session()->get('products');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+            $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
         }
 
         $viewData = [];
@@ -32,8 +32,8 @@ class CartController extends Controller
 
     public function add(Request $request, int $id): RedirectResponse
     {
-        $products = $request->session()->get('cartProducts');
-        $products[$id] = $request->quantity;
+        $products = $request->session()->get('products');
+        $products[$id] = Utils::validateCartProductQuantity($request, $id);
         $request->session()->put('products', $products);
 
         return back();
@@ -41,9 +41,10 @@ class CartController extends Controller
 
     public function remove(Request $request, int $id): RedirectResponse
     {
-        $products = $request->session()->get('cartProducts');
+        $products = $request->session()->get('products');
 
         if (isset($products[$id])) {
+            Utils::restockUnit($id, $products[$id]);
             unset($products[$id]);
             $request->session()->put('products', $products);
         }
@@ -53,7 +54,8 @@ class CartController extends Controller
 
     public function removeAll(Request $request): RedirectResponse
     {
-        $request->session()->forget('cartProducts');
+        Utils::restockAll($request->session()->get('products'));
+        $request->session()->forget('products');
 
         return back();
     }
@@ -61,10 +63,10 @@ class CartController extends Controller
     public function checkout(Request $request): View
     {
         $user = Auth::user();
-        $productsInSession = $request->session()->get('cartProducts');
+        $productsInSession = $request->session()->get('products');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Product::sumPricesByQuantities($productsInCart, $productsInSession);
+            $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
             $order = Order::create([
                 'has_shipped' => false,
                 'user_id' => $user->getId(),
@@ -85,7 +87,7 @@ class CartController extends Controller
             $user->setBalance($newBalance);
             $user->save();
 
-            $request->session()->forget('cartProducts');
+            $request->session()->forget('products');
 
             $viewData = [];
             $viewData['order'] = $order;

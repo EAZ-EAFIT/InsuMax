@@ -33,8 +33,6 @@ class AdminWishlistController extends Controller
     {
         Wishlist::validate($request);
 
-        // Falta el procesamiento de keywords. No se si se peuda aquí o toque en Utils
-
         Wishlist::create([
             'name' => $request->name,
             'user_id' => $request->userId,
