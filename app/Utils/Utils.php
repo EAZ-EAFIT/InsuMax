@@ -37,6 +37,16 @@ class Utils
         return $total / 100;
     }
 
+    public static function updateProductInventory(Request $request, int $id): void
+    {
+        $productsInCart = $request->session()->get('products');
+        $purchasedProduct = Product::findOrFail($id);
+        $purchasedUnits = $productsInCart[$id];
+
+        $purchasedProduct->setInventory($purchasedProduct->getInventory() - $purchasedUnits);
+        $purchasedProduct->save();
+    }
+
     public static function validateCartProductQuantity(Request $request, int $id): int
     {
         $savedProduct = Product::findOrFail($id);
@@ -44,28 +54,9 @@ class Utils
         $requestedQuantity = $request->quantity;
 
         if ($requestedQuantity > $maxQuantity) {
-            $savedProduct->setInventory(0);
-            $savedProduct->save();
-
             return $maxQuantity;
         } else {
-            $savedProduct->setInventory($maxQuantity - $requestedQuantity);
-            $savedProduct->save();
-
             return $requestedQuantity;
-        }
-    }
-
-    public static function restockUnit(int $id, int $quantity): void
-    {
-        $productToRestock = Product::findOrFail($id);
-        $productToRestock->setInventory($productToRestock->getInventory() + $quantity);
-    }
-
-    public static function restockAll(array $productsInCart)
-    {
-        foreach ($productsInCart as $id => $quantity) {
-            Utils::restockUnit($id, $quantity);
         }
     }
 }

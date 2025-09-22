@@ -47,6 +47,11 @@
           </svg>
           {{ __('notification/index.addCart') }}
         </button>
+        @if(session('success'))
+        <p class="success-message brown">
+          {{ session('success') }}
+        </p>
+        @endif
       </form>
 
       <div class="actions-container flex">

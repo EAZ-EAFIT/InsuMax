@@ -15,6 +15,7 @@ class CartController extends Controller
 {
     public function index(Request $request): View
     {
+        $total = 0;
         $productsInCart = [];
 
         $productsInSession = $request->session()->get('products');
@@ -33,10 +34,17 @@ class CartController extends Controller
     public function add(Request $request, int $id): RedirectResponse
     {
         $products = $request->session()->get('products');
-        $products[$id] = Utils::validateCartProductQuantity($request, $id);
+
+        if (! isset($products) || ! array_key_exists($id, $products) || $products[$id] == 0) {
+            $products[$id] = Utils::validateCartProductQuantity($request, $id);
+        } else {
+            $additionalQuantity = Utils::validateCartProductQuantity($request, $id);
+            $products[$id] = $products[$id] + $additionalQuantity;
+        }
+
         $request->session()->put('products', $products);
 
-        return back();
+        return back()->with('success', __('messages.addToCartSuccess'));
     }
 
     public function remove(Request $request, int $id): RedirectResponse
@@ -44,7 +52,6 @@ class CartController extends Controller
         $products = $request->session()->get('products');
 
         if (isset($products[$id])) {
-            Utils::restockUnit($id, $products[$id]);
             unset($products[$id]);
             $request->session()->put('products', $products);
         }
@@ -54,7 +61,6 @@ class CartController extends Controller
 
     public function removeAll(Request $request): RedirectResponse
     {
-        Utils::restockAll($request->session()->get('products'));
         $request->session()->forget('products');
 
         return back();
@@ -81,6 +87,7 @@ class CartController extends Controller
                     'price' => $product->getPrice() * 100,
                     // Revisar el getPrice de product que siempre se divide por 100
                 ]);
+                Utils::updateProductInventory($request, $product->getId());
             }
 
             $newBalance = $user->getBalance() - $total;
