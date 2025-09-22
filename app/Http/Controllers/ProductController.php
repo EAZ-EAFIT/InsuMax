@@ -35,7 +35,39 @@ class ProductController extends Controller
         $search = $request->input('query');
 
         $viewData = [];
-        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->paginate(18);
+        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->paginate(18);
+
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function sortPrice(): View
+    {
+        $viewData = [];
+        $viewData['products'] = Product::orderBy('price', 'asc')->paginate(18);
+
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function sortName(): View
+    {
+        $viewData = [];
+        $viewData['products'] = Product::orderBy('name', 'asc')->paginate(18);
+
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function sortInventory(): View
+    {
+        $viewData = [];
+        $viewData['products'] = Product::orderByDesc('inventory')->paginate(18);
+
+        return view('product.index')->with('viewData', $viewData);
+    }
+
+    public function sortRecentlyAdded(): View
+    {
+        $viewData = [];
+        $viewData['products'] = Product::orderByDesc('created_at')->paginate(18);
 
         return view('product.index')->with('viewData', $viewData);
     }

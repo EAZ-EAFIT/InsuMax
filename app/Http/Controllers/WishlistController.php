@@ -9,7 +9,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\User;
 use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,20 +23,6 @@ class WishlistController extends Controller
         $viewData['wishlists'] = Wishlist::with('products')->where('user_id', Auth::user()->getId())->get();
 
         return view('wishlist.index')->with('viewData', $viewData);
-    }
-
-    public function show(int $id): View
-    {
-        // TEST USER, ALWAYS THE SAME
-        $user = User::findOrFail(1);
-
-        $wishlist = Wishlist::with('products')->where('user_id', $user->getId())->where('id', $id)->firstOrFail();
-
-        $viewData = [];
-        $viewData['wishlist'] = $wishlist;
-        $viewData['user'] = $user;
-
-        return view('wishlist.show')->with('viewData', $viewData);
     }
 
     public function addOptions(int $productId): View|RedirectResponse

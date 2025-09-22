@@ -22,9 +22,13 @@ Route::post('/item/save', $ITEM_CONTROLLER_PATH.'@save')->name('item.save');
 Route::get('/item/{id}', $ITEM_CONTROLLER_PATH.'@show')->name('item.show');
 Route::delete('/item/delete/{id}', $ITEM_CONTROLLER_PATH.'@delete')->name('item.delete');
 
-Route::get('/product', $PRODUCT_CONTROLLER_PATH.'@index')->name('product.index');
-Route::get('/product/{id}', $PRODUCT_CONTROLLER_PATH.'@show')->name('product.show');
+Route::get('/products', $PRODUCT_CONTROLLER_PATH.'@index')->name('product.index');
 Route::get('/product-search', $PRODUCT_CONTROLLER_PATH.'@search')->name('product.search');
+Route::get('/product-sort-price', $PRODUCT_CONTROLLER_PATH.'@sortPrice')->name('product.sortPrice');
+Route::get('/product-sort-name', $PRODUCT_CONTROLLER_PATH.'@sortName')->name('product.sortName');
+Route::get('/product-sort-inventory', $PRODUCT_CONTROLLER_PATH.'@sortInventory')->name('product.sortInventory');
+Route::get('/product-sort-recently-added', $PRODUCT_CONTROLLER_PATH.'@sortRecentlyAdded')->name('product.sortRecentlyAdded');
+Route::get('/product/{id}', $PRODUCT_CONTROLLER_PATH.'@show')->name('product.show');
 
 Route::get('/order', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
 Route::get('/order/create', $ORDER_CONTROLLER_PATH.'@create')->name('order.create');

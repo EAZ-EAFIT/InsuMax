@@ -38,7 +38,7 @@ class NotificationController extends Controller
         $search = $request->input('query');
 
         $viewData = [];
-        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->paginate(9);
+        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->paginate(9);
 
         return view('notification.create')->with('viewData', $viewData);
     }
@@ -107,15 +107,5 @@ class NotificationController extends Controller
         $notification->notify();
 
         return redirect()->route('notification.show', ['id' => $id]);
-    }
-
-    public function show(int $id): View
-    {
-        $notification = Notification::with(['product', 'customer'])->findOrFail($id);
-
-        $viewData = [];
-        $viewData['notification'] = $notification;
-
-        return view('notification.show')->with('viewData', $viewData);
     }
 }

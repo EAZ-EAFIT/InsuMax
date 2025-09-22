@@ -10,9 +10,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Utils\Utils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class AdminProductController extends Controller
@@ -34,24 +34,16 @@ class AdminProductController extends Controller
     {
         Product::validate($request);
 
-        // Falta el procesamiento de keywords. No se si se peuda aquí o toque en Utils
-
-        if ($request->hasFile('image')) {
-            $imageName = str_replace(' ', '', $request->name).'.'.$request->file('image')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('image')->getRealPath())
-            );
-        }
-
-        Product::create([
+        $newProduct = Product::create([
             'name' => $request->name,
             'description' => $request->description,
-            'keywords' => $request->keywords,
-            'image' => $imageName,
+            'keywords' => Utils::processKeywords($request->keywords),
+            'image' => 'none',
             'inventory' => $request->inventory,
             'price' => $request->price,
         ]);
+
+        Utils::storeImage($request, $newProduct);
 
         return redirect()->route('admin.product.index');
     }
@@ -80,14 +72,7 @@ class AdminProductController extends Controller
         $product->setName($request->input('name'));
         $product->setDescription($request->input('description'));
         $product->setKeywords($request->input('keywords'));
-        if ($request->hasFile('image')) {
-            $imageName = str_replace(' ', '', $product->getName()).'.'.$request->file('image')->extension();
-            Storage::disk('public')->put(
-                $imageName,
-                file_get_contents($request->file('image')->getRealPath())
-            );
-            $product->setImage($imageName);
-        }
+        Utils::storeImage($request, $product);
         $product->setInventory($request->input('inventory'));
         $product->setPrice($request->input('price'));
         $product->save();

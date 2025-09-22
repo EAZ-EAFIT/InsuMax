@@ -62,7 +62,7 @@ img {
 }
 
 .end-options {
-  justify-content: space-between;
+  justify-content: flex-end;
   margin: 40px 40px;
 }
 

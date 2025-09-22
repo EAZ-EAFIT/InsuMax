@@ -6,7 +6,6 @@ return [
     'create' => 'Create a wishlist',
     'guest' => 'Please log in to see your wishlists',
     'remove' => 'Remove',
-    'add' => 'Add products to cart',
     'emptyProducts' => 'This wishlist is empty',
     'emptyProductsButton' => 'Explore products',
     'delete' => 'Delete wishlist',

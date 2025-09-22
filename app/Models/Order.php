@@ -107,21 +107,4 @@ class Order extends Model
         $this->setHasShipped(false);
         $this->save();
     }
-
-    public function calculateTotal(): int
-    {
-        $total = 0;
-        foreach ($this->getItems() as $item) {
-            $total += $item->getPrice() * $item->getQuantity();
-        }
-        $this->setTotal($total);
-
-        return $total;
-    }
-
-    public function pay(): void
-    {
-        $this->setHasShipped(true);
-        $this->save();
-    }
 }
