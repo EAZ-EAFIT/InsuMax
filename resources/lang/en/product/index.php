@@ -2,6 +2,9 @@
 
 return [
     'title' => 'Products - InsuMax',
+    'reminder' => 'Remind to buy',
+    'in' => 'in',
+    'days' => 'day(s).',
     'subtitle' => 'Our products',
     'order' => 'Order by:',
     'sortPrice' => 'Price &uarr;',

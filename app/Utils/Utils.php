@@ -3,9 +3,11 @@
 namespace App\Utils;
 
 use App\Models\Product;
+use App\Models\Notification;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Carbon\Carbon;
 
 class Utils
 {
@@ -73,5 +75,40 @@ class Utils
         } else {
             return $requestedQuantity;
         }
+    }
+
+    public static function updateNotificationsDate(int $userId): void
+    {
+        $notifications = Notification::where('user_id', $userId)->get();
+        
+        foreach($notifications as $notification) {
+            $originalDate = $notification->getDate();
+            $notificationDate = Carbon::parse($notification->getDate());
+
+            while($notificationDate->lessThan(Carbon::today()->subDays(1))){
+                $notificationDate->addDays($notification->getTimeInterval());
+                $notification->setDate($notificationDate->toDateString());
+            }
+
+            if ($notification->getDate() !== $originalDate) {
+                $notification->save();
+            }
+        }
+    }
+
+    public static function retrieveExpiringNotifications(int $userId): array
+    {
+        $notifications = Notification::where('user_id', $userId)->get();
+        $nextNotifications = [];
+
+        foreach($notifications as $notification) {
+            $notificationDate = Carbon::parse($notification->getDate());
+            if ($notificationDate->lessThan(Carbon::today()->addDays(6))) {
+                $remainingDays = Carbon::today()->diffInDays($notificationDate, false);
+                $nextNotifications[$notification->getProduct()->getName()] = $remainingDays;
+            }
+        }
+        
+        return $nextNotifications;
     }
 }

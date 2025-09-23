@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use App\Models\Product;
+use App\Utils\Utils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -19,6 +20,8 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
+        Utils::updateNotificationsDate(Auth::user()->getId());
+
         $viewData = [];
         $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::user()->getId())->get();
 
@@ -89,6 +92,7 @@ class NotificationController extends Controller
 
         $notification->setQuantity($request->input('quantity'));
         $notification->setTimeInterval($request->input('timeInterval'));
+        $notification->setDate($request->input('date'));
         $notification->save();
 
         return redirect()->route('notification.index');

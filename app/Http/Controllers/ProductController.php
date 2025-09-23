@@ -9,6 +9,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
+use App\Utils\Utils;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -18,6 +20,11 @@ class ProductController extends Controller
     {
         $viewData = [];
         $viewData['products'] = Product::paginate(18);
+
+        if (Auth::check()){
+            Utils::updateNotificationsDate(Auth::user()->getId());
+            $viewData['expiringNotifications'] = Utils::retrieveExpiringNotifications(Auth::user()->getId());
+        }
 
         return view('product.index')->with('viewData', $viewData);
     }
