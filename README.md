@@ -23,7 +23,7 @@ DB_PASSWORD= YOUR_PASSWORD
 
 
 ```
-3. Run ```bash composer install ```
-4. Run ```bash php artisan key:generate ```
-5. Run ```bash php artisan migrate ``` 
-6. Run ```bash php artisan serve```
+3. Run ``` composer install ```
+4. Run ``` php artisan key:generate ```
+5. Run ``` php artisan migrate ``` 
+6. Run ``` php artisan serve```
