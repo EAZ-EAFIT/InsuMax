@@ -31,10 +31,25 @@ class Utils
     {
         $total = 0;
         foreach ($products as $product) {
-            $total = $total + ($product->getPrice() * 100 * $productsInSession[$product->getId()]);
+            $total = $total + ($product->getPrice() * $productsInSession[$product->getId()]);
         }
 
-        return $total / 100;
+        return $total;
+    }
+
+    public static function convertToDollars(int $priceInCents): float
+    {
+        return $priceInCents / 100;
+    }
+
+    public static function updateBalance(int $currentBalance, int $amount): int
+    {
+
+        if ($currentBalance - $amount < 0) {
+            return -1;
+        }
+
+        return $currentBalance - $amount;
     }
 
     public static function updateProductInventory(Request $request, int $id): void
@@ -51,7 +66,7 @@ class Utils
     {
         $savedProduct = Product::findOrFail($id);
         $maxQuantity = $savedProduct->getInventory();
-        $requestedQuantity = $request->quantity;
+        $requestedQuantity = $request->input('quantity');
 
         if ($requestedQuantity > $maxQuantity) {
             return $maxQuantity;

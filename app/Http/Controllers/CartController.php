@@ -26,7 +26,7 @@ class CartController extends Controller
 
         $viewData = [];
         $viewData['products'] = $productsInCart;
-        $viewData['total'] = $total;
+        $viewData['total'] = Utils::convertToDollars($total);
 
         return view('cart.index')->with('viewData', $viewData);
     }
@@ -66,13 +66,19 @@ class CartController extends Controller
         return back();
     }
 
-    public function checkout(Request $request): View
+    public function checkout(Request $request): View|RedirectResponse
     {
         $user = Auth::user();
         $productsInSession = $request->session()->get('products');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
+
+            $newBalance = Utils::updateBalance($user->getBalance(), $total);
+            if ($newBalance < 0) {
+                return back()->with('error', __('messages.checkoutError'));
+            }
+
             $order = Order::create([
                 'has_shipped' => false,
                 'user_id' => $user->getId(),
@@ -84,13 +90,11 @@ class CartController extends Controller
                     'product_id' => $product->getId(),
                     'order_id' => $order->getId(),
                     'quantity' => $productsInSession[$product->getId()],
-                    'price' => $product->getPrice() * 100,
-                    // Revisar el getPrice de product que siempre se divide por 100
+                    'price' => $product->getPrice(),
                 ]);
                 Utils::updateProductInventory($request, $product->getId());
             }
 
-            $newBalance = $user->getBalance() - $total;
             $user->setBalance($newBalance);
             $user->save();
 
@@ -100,8 +104,8 @@ class CartController extends Controller
             $viewData['order'] = $order;
 
             return view('cart.checkout')->with('viewData', $viewData);
-        } else {
-            return view('cart.index');
         }
+
+        return view('cart.index');
     }
 }

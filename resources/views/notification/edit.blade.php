@@ -25,9 +25,11 @@
       @endif
     </div>
 
-    <form action="{{ route('notification.update', $viewData['notification']->getId()) }}" method="POST" id="notification-form" class="form-box flex column center light-blue">
+    <form action="{{ route('notification.update') }}" method="POST" id="notification-form" class="form-box flex column center light-blue">
       @csrf
       @method('PUT')
+      <input type="hidden" name="id" value="{{ $viewData['notification']->getId() }}">
+
       <label for="quantity">{{ __('notification/edit.quantity') }}</label>
       <input type="number" id="quantity" name="quantity" min="1" value="{{ $viewData['notification']->getQuantity() }}" class="quantity" required>
 

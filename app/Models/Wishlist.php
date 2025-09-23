@@ -84,7 +84,7 @@ class Wishlist extends Model
         return $this->products;
     }
 
-    public function addProduct(Product $product): void
+    public function appendProduct(Product $product): void
     {
         $this->products()->attach($product->getId());
     }

@@ -59,7 +59,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/notification/set/{id}', $NOTIFICATION_CONTROLLER_PATH.'@set')->name('notification.set');
     Route::post('/notification/save', $NOTIFICATION_CONTROLLER_PATH.'@save')->name('notification.save');
     Route::get('/notification/edit/{id}', $NOTIFICATION_CONTROLLER_PATH.'@edit')->name('notification.edit');
-    Route::put('/notification/edit/{id}/update', $NOTIFICATION_CONTROLLER_PATH.'@update')->name('notification.update');
+    Route::put('/notification/edit/update', $NOTIFICATION_CONTROLLER_PATH.'@update')->name('notification.update');
     Route::delete('/notification/delete/{id}', $NOTIFICATION_CONTROLLER_PATH.'@delete')->name('notification.delete');
 
     Route::get('/wishlist', $WISHLIST_CONTROLLER_PATH.'@index')->name('wishlist.index');

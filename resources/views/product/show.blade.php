@@ -34,7 +34,7 @@
           </button>
         </div>
       </form>
-      <p class="white semibold">{{ __('product/show.currency') }}{{ $viewData['product']->getPrice() }}{{ __('product/show.unit') }}</p>
+      <p class="white semibold">{{ __('product/show.currency') }}{{ $viewData['product']->getDollarPrice() }}{{ __('product/show.unit') }}</p>
     </div>
 
     @if ($viewData['product']->getInventory() > 0)

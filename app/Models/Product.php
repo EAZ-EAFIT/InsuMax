@@ -98,7 +98,12 @@ class Product extends Model
         $this->attributes['inventory'] = $inventory;
     }
 
-    public function getPrice(): float
+    public function getPrice(): int
+    {
+        return $this->attributes['price'];
+    }
+
+    public function getDollarPrice(): float
     {
         return $this->attributes['price'] / 100;
     }

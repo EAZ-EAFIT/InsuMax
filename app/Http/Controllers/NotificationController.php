@@ -57,18 +57,18 @@ class NotificationController extends Controller
         Notification::validate($request);
 
         Notification::create([
-            'date' => $request->date,
-            'time_interval' => $request->timeInterval,
-            'quantity' => $request->quantity,
-            'product_id' => $request->productId,
+            'date' => $request->input('date'),
+            'time_interval' => $request->input('timeInterval'),
+            'quantity' => $request->input('quantity'),
+            'product_id' => $request->input('productId'),
             'user_id' => Auth::user()->getId(),
         ]);
 
         $viewData = [];
-        $viewData['date'] = $request->date;
-        $viewData['timeInterval'] = $request->timeInterval;
-        $viewData['quantity'] = $request->quantity;
-        $viewData['product'] = Product::findOrFail($request->productId);
+        $viewData['date'] = $request->input('date');
+        $viewData['timeInterval'] = $request->input('timeInterval');
+        $viewData['quantity'] = $request->input('quantity');
+        $viewData['product'] = Product::findOrFail($request->input('productId'));
 
         return view('notification.save')->with('viewData', $viewData);
     }
@@ -81,11 +81,11 @@ class NotificationController extends Controller
         return view('notification.edit')->with('viewData', $viewData);
     }
 
-    public function update(Request $request, int $id): RedirectResponse
+    public function update(Request $request): RedirectResponse
     {
         Notification::validate($request);
 
-        $notification = Notification::findOrFail($id);
+        $notification = Notification::findOrFail($request->input('id'));
 
         $notification->setQuantity($request->input('quantity'));
         $notification->setTimeInterval($request->input('timeInterval'));

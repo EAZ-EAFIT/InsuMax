@@ -34,8 +34,8 @@ class AdminWishlistController extends Controller
         Wishlist::validate($request);
 
         Wishlist::create([
-            'name' => $request->name,
-            'user_id' => $request->userId,
+            'name' => $request->input('name'),
+            'user_id' => $request->input('userId'),
         ]);
 
         return redirect()->route('admin.wishlist.index');

@@ -11,7 +11,7 @@
   <div class="order-details flex column">
     <h2 class="dark-blue">{{ __('order/index.orderNumber') }}{{ $order->getId() }}</h2>
     <p class="light-blue semibold">{{ __('order/index.date') }} <span class="regular">{{ $order->getCreatedAt() }}</span></p>
-    <p class="light-blue semibold">{{ __('order/index.total') }} <span class="regular">{{ $order->getTotal() }}</span></p>
+    <p class="light-blue semibold">{{ __('order/index.total') }} <span class="regular">{{ __('order/index.currency') }}{{ $order->getDollarTotal() }}</span></p>
   </div>
 
   <div class="order-header grid">
@@ -29,7 +29,7 @@
         {{ $item->getProduct()->getName() }}
       </a>
 
-      <span class="light-blue">{{ __('order/index.currency') }}{{ $item->getPrice() }}</span>
+      <span class="light-blue">{{ __('order/index.currency') }}{{ $item->getDollarPrice() }}</span>
 
       <span class="light-blue">{{ $item->getQuantity() }}</span>
     </div>

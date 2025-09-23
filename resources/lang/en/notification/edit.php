@@ -9,5 +9,5 @@ return [
     'every' => 'Every:',
     'days' => 'days',
     'edit' => 'Update notification',
-    'return' => '&lt; Return to your notifications',
+    'return' => '&larr; Return to your notifications',
 ];

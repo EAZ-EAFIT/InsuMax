@@ -35,12 +35,12 @@ class AdminProductController extends Controller
         Product::validate($request);
 
         $newProduct = Product::create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'keywords' => Utils::processKeywords($request->keywords),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+            'keywords' => Utils::processKeywords($request->input('keywords')),
             'image' => 'none',
-            'inventory' => $request->inventory,
-            'price' => $request->price,
+            'inventory' => $request->input('inventory'),
+            'price' => $request->input('price'),
         ]);
 
         Utils::storeImage($request, $newProduct);

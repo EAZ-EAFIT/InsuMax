@@ -9,7 +9,11 @@
     {{ __('home/index.logoStart') }}<span class="logo-span">{{ __('home/index.logoEnd') }}</span>
   </h1>
 
+  @guest
   <a href="{{ route('login') }}" class="btn-dark-blue login-btn">{!! __('home/index.login') !!}</a>
+  @else
+  <a href="{{ route('product.index') }}" class="btn-dark-blue login-btn">{!! __('home/index.login') !!}</a>
+  @endguest
 </header>
 
 <main class="flex">

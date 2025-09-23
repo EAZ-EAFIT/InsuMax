@@ -41,7 +41,7 @@
 		<div class="product-card-details flex center">
 			<div class="product-text flex column">
 				<p class="yellow">{{ $product->getName() }}</p>
-				<p class="white">{{ __('product/index.currency') }}{{ $product->getPrice() }}</p>
+				<p class="white">{{ __('product/index.currency') }}{{ $product->getDollarPrice() }}</p>
 			</div>
 			<a href="{{ route('product.show', $product->getId()) }}" class="gray-bg dark-blue btn">{{ __('product/index.shop') }}</a>
 		</div>

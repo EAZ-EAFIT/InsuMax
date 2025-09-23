@@ -21,7 +21,7 @@
         <p class="light-blue semibold">{{ $product->getName() }}</p>
       </div>
 
-      <span class="light-blue">{{ __('cart/index.currency') }}{{ $product->getPrice() }}</span>
+      <span class="light-blue">{{ __('cart/index.currency') }}{{ $product->getDollarPrice() }}</span>
 
       <span class="light-blue">{{ session('products')[$product->getId()] }}</span>
     </div>
@@ -46,6 +46,13 @@
         {{ __('cart/index.currency') }}{{ $viewData['total'] }}
       </span>
     </p>
+
+    @if(session('error'))
+    <p class="yellow">
+      {{ session('error') }}
+    </p>
+    @endif
+
     <a href="{{ route('cart.checkout') }}" class="btn-checkout btn-dark-blue">
       {{ __('cart/index.checkout') }}
     </a>

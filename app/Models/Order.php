@@ -47,6 +47,11 @@ class Order extends Model
         return $this->attributes['total'];
     }
 
+    public function getDollarTotal(): float
+    {
+        return $this->attributes['total'] / 100;
+    }
+
     public function getHasShipped(): bool
     {
         return $this->attributes['hasShipped'];
