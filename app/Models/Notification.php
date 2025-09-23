@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class Notification extends Model
 {
@@ -133,5 +134,27 @@ class Notification extends Model
             $mail->to($toEmail)
                 ->subject($subject);
         });
+    }
+    public function shouldShowBanner(): bool
+    {
+        $notificationDate = Carbon::parse($this->getNotificationDate());
+        $today = Carbon::today();
+
+        return $today->between(
+            $notificationDate->copy()->subDays(5),
+            $notificationDate->copy()->addDays(5)
+        );
+    }
+
+    public static function getBannerNotificationsForUser($customerId)
+    {
+        $today = Carbon::today();
+        $start = $today->copy()->subDays(5);
+        $end = $today->copy()->addDays(5);
+
+        return self::where('customer_id', $customerId)
+            ->whereBetween('notification_date', [$start, $end])
+            ->with('product')
+            ->get();
     }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Customer;
+use App\Models\Notification;
+use App\Models\Product;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -13,7 +14,9 @@ class ProductController extends Controller
         $viewData = [];
         $viewData['products'] = Product::all();
         // TEST USER, ALWAYS THE SAME
-        $viewData['customer'] = Customer::findOrFail(1);
+        $customer = Customer::findOrFail(1);
+        $viewData['customer'] = $customer;
+        $viewData['bannerNotifications'] = Notification::getBannerNotificationsForUser($customer->getId());
 
         return view('product.index')->with('viewData', $viewData);
     }
