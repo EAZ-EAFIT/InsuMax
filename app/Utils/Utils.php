@@ -77,15 +77,14 @@ class Utils
         }
     }
 
-    public static function updateNotificationsDate(int $userId): void
+    public static function updateNotificationsDate(Collection $notifications): void
     {
-        $notifications = Notification::where('user_id', $userId)->get();
         
         foreach($notifications as $notification) {
             $originalDate = $notification->getDate();
             $notificationDate = Carbon::parse($notification->getDate());
 
-            while($notificationDate->lessThan(Carbon::today()->subDays(1))){
+            while($notificationDate->lessThan(Carbon::today())){
                 $notificationDate->addDays($notification->getTimeInterval());
                 $notification->setDate($notificationDate->toDateString());
             }
@@ -96,9 +95,8 @@ class Utils
         }
     }
 
-    public static function retrieveExpiringNotifications(int $userId): array
+    public static function retrieveExpiringNotifications(Collection $notifications): array
     {
-        $notifications = Notification::where('user_id', $userId)->get();
         $nextNotifications = [];
 
         foreach($notifications as $notification) {

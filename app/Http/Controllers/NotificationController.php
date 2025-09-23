@@ -20,7 +20,8 @@ class NotificationController extends Controller
 {
     public function index(): View
     {
-        Utils::updateNotificationsDate(Auth::user()->getId());
+        $notifications = Notification::where('user_id', Auth::user()->getId())->get();
+            Utils::updateNotificationsDate($notifications);
 
         $viewData = [];
         $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::user()->getId())->get();
