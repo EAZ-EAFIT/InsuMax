@@ -2,26 +2,31 @@
 ### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila Salazar
 
 ---
-## Requisitos
-- Laravel Framework 12.26.1
-- Composer Dependency Manager for PHP
-- XAMPP Control Panel v3.3.0
+# Entrega 1 Arquitecturas de Software - S2566
+### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila Salazar
 
+---
+## Requirements
+- Laravel Framework 12.26.1  
+- Composer Dependency Manager for PHP  
+- XAMPP Control Panel v3.3.0  
 
+## Execution
 
-## Ejecución
+1. Start the Apache server and the MySQL database in XAMPP Control Panel.  
+2. Change the environment variables so that they correspond to your own database authentication and database name:  
 
-1. Iniciar el servidor Apache y la base de datos mySQL en XAMPP Control Panel
-2. Cambiar las variables de entorno para que correspondan a la autenticación propia de base de datos y nombre de la base de datos
 ```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=insumax
-DB_USERNAME= USUARIO_PROPIO
-DB_PASSWORD=  CONTRASEÑA_PROPIA
+DB_USERNAME= YOUR_USERNAME
+DB_PASSWORD= YOUR_PASSWORD
+
 
 ```
-3. Ejecutar ```bash php artisan key:generate ``` 
-4. Ejecutar ```bash php artisan migrate ``` 
-5. Ejecutar ```bash php artisan serve```
+3. Run ```bash composer install ```
+4. Run ```bash php artisan key:generate ```
+5. Run ```bash php artisan migrate ``` 
+6. Run ```bash php artisan serve```
