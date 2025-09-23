@@ -8,11 +8,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
 use App\Models\Notification;
-use Illuminate\Support\Facades\Auth;
+use App\Models\Product;
 use App\Utils\Utils;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -23,7 +23,7 @@ class ProductController extends Controller
         $viewData['products'] = Product::paginate(18);
         $viewData['expiringNotifications'] = [];
 
-        if (Auth::check()){
+        if (Auth::check()) {
             $notifications = Notification::where('user_id', Auth::user()->getId())->get();
             Utils::updateNotificationsDate($notifications);
             $viewData['expiringNotifications'] = Utils::retrieveExpiringNotifications($notifications);
