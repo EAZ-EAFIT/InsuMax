@@ -4,6 +4,7 @@
 @endsection
 @section('title', __('product/index.title'))
 @section('content')
+@if (!empty($viewData['expiringNotifications']))
 <div class="notification-banner">
 	@foreach ($viewData['expiringNotifications'] as $productName => $remainingDays)
 	<p class="white brown-bg">
@@ -15,6 +16,7 @@
 	</p>
 	@endforeach
 </div>
+@endif
 
 <div class="search-container flex column">
 	<h1 class="light-blue semibold">{{ __('product/index.subtitle') }}</h1>

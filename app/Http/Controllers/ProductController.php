@@ -21,6 +21,7 @@ class ProductController extends Controller
     {
         $viewData = [];
         $viewData['products'] = Product::paginate(18);
+        $viewData['expiringNotifications'] = [];
 
         if (Auth::check()){
             $notifications = Notification::where('user_id', Auth::user()->getId())->get();

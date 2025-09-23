@@ -9,7 +9,7 @@ setTimeout(() => {
 
         if (opacity <= 0) {
             clearInterval(intervalId);
-            banner.classList.add('hidden');
+            banner.classList.add('hide');
         }
     }, 80);
 }, 3000);
