@@ -1,8 +1,5 @@
-# Entrega 1 Arquitecturas de Software - S2566
-### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila Salazar
-
----
-# Entrega 1 Arquitecturas de Software - S2566
+# InsuMax - Medical Supplies Store 
+## Software Architecture Project - S2566
 ### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila Salazar
 
 ---
