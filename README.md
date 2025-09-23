@@ -1,5 +1,5 @@
 # Entrega 1 Arquitecturas de Software - S2566
-### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila
+### Esteban Álvarez Zuluaga, Mateo Pineda Álvarez, Daniel Arcila Salazar
 
 ---
 ## Requisitos
