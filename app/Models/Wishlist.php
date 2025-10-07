@@ -59,6 +59,8 @@ class Wishlist extends Model
         return $this->attributes['updated_at'];
     }
 
+    // Relationships
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

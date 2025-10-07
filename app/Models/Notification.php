@@ -20,6 +20,8 @@ class Notification extends Model
      * $this->attributes['date'] - string - contains the notification date
      * $this->attributes['time_interval'] - int - contains the time interval
      * $this->attributes['quantity'] - int - contains the quantity
+     * $this->attributes['created_at'] - string - contains the timestamp of creation
+     * $this->attributes['updated_at'] - string - contains the timestamp of updates
      * $this->product - Product - contains the associated product
      * $this->user - User - contains the associated user
      */
@@ -46,29 +48,14 @@ class Notification extends Model
         return $this->attributes['date'];
     }
 
-    public function getTimeInterval(): int
-    {
-        return $this->attributes['time_interval'];
-    }
-
-    public function getQuantity(): int
-    {
-        return $this->attributes['quantity'];
-    }
-
-    public function getProduct(): Product
-    {
-        return $this->product;
-    }
-
-    public function getUser(): User
-    {
-        return $this->user;
-    }
-
     public function setDate(string $date): void
     {
         $this->attributes['date'] = $date;
+    }
+
+    public function getTimeInterval(): int
+    {
+        return $this->attributes['time_interval'];
     }
 
     public function setTimeInterval(int $interval): void
@@ -76,9 +63,26 @@ class Notification extends Model
         $this->attributes['time_interval'] = $interval;
     }
 
+    public function getQuantity(): int
+    {
+        return $this->attributes['quantity'];
+    }
+
     public function setQuantity(int $quantity): void
     {
         $this->attributes['quantity'] = $quantity;
+    }
+
+    // Relationships
+
+    public function product(): BelongsTo
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function getProduct(): Product
+    {
+        return $this->product;
     }
 
     public function setProduct(Product $product): void
@@ -86,18 +90,18 @@ class Notification extends Model
         $this->product = $product;
     }
 
-    public function setUser(User $user): void
-    {
-        $this->user = $user;
-    }
-
-    public function product(): BelongsTo
-    {
-        return $this->belongsTo(Product::class);
-    }
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 }

@@ -44,9 +44,19 @@ class Item extends Model
         return $this->attributes['quantity'];
     }
 
+    public function setQuantity(int $quantity): void
+    {
+        $this->attributes['quantity'] = $quantity;
+    }
+
     public function getPrice(): int
     {
         return $this->attributes['price'];
+    }
+
+    public function setPrice(int $price): void
+    {
+        $this->attributes['price'] = $price;
     }
 
     public function getDollarPrice(): float
@@ -64,15 +74,7 @@ class Item extends Model
         return $this->attributes['updated_at'];
     }
 
-    public function setQuantity(int $quantity): void
-    {
-        $this->attributes['quantity'] = $quantity;
-    }
-
-    public function setPrice(int $price): void
-    {
-        $this->attributes['price'] = $price;
-    }
+    // Relationships
 
     public function order(): BelongsTo
     {
