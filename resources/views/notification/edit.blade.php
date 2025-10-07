@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('styles')
-<link rel="stylesheet" href="{{ asset('/css/notification/create.css') }}">
-<link rel="stylesheet" href="{{ asset('/css/notification/set.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/notification/selectProduct.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/notification/setDetails.css') }}">
 <link rel="stylesheet" href="{{ asset('/css/notification/edit.css') }}">
 @endsection
 @section('title', __('notification/edit.title'))

@@ -29,12 +29,12 @@ class NotificationController extends Controller
         return view('notification.index')->with('viewData', $viewData);
     }
 
-    public function create(): View
+    public function selectProduct(): View
     {
         $viewData = [];
         $viewData['products'] = Product::paginate(9);
 
-        return view('notification.create')->with('viewData', $viewData);
+        return view('notification.selectProduct')->with('viewData', $viewData);
     }
 
     public function searchProduct(Request $request): View
@@ -44,16 +44,16 @@ class NotificationController extends Controller
         $viewData = [];
         $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->paginate(9);
 
-        return view('notification.create')->with('viewData', $viewData);
+        return view('notification.selectProduct')->with('viewData', $viewData);
     }
 
-    public function set(int $id): View
+    public function setDetails(int $id): View
     {
         $viewData = [];
         $viewData['product'] = Product::findOrFail($id);
         $viewData['user'] = Auth::user();
 
-        return view('notification.set')->with('viewData', $viewData);
+        return view('notification.setDetails')->with('viewData', $viewData);
     }
 
     public function save(Request $request): View

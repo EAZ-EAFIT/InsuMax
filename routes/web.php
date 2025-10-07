@@ -51,9 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/orders', $ORDER_CONTROLLER_PATH.'@index')->name('order.index');
 
     Route::get('/notification', $NOTIFICATION_CONTROLLER_PATH.'@index')->name('notification.index');
-    Route::get('/notification/create', $NOTIFICATION_CONTROLLER_PATH.'@create')->name('notification.create');
-    Route::get('/notification/create/search-product', $NOTIFICATION_CONTROLLER_PATH.'@searchProduct')->name('notification.searchProduct');
-    Route::get('/notification/set/{id}', $NOTIFICATION_CONTROLLER_PATH.'@set')->name('notification.set');
+    Route::get('/notification/select-product', $NOTIFICATION_CONTROLLER_PATH.'@selectProduct')->name('notification.selectProduct');
+    Route::get('/notification/select-product/search-product', $NOTIFICATION_CONTROLLER_PATH.'@searchProduct')->name('notification.searchProduct');
+    Route::get('/notification/setDetails/{id}', $NOTIFICATION_CONTROLLER_PATH.'@setDetails')->name('notification.setDetails');
     Route::post('/notification/save', $NOTIFICATION_CONTROLLER_PATH.'@save')->name('notification.save');
     Route::get('/notification/edit/{id}', $NOTIFICATION_CONTROLLER_PATH.'@edit')->name('notification.edit');
     Route::put('/notification/edit/update', $NOTIFICATION_CONTROLLER_PATH.'@update')->name('notification.update');
