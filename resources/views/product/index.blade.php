@@ -32,16 +32,16 @@
 
 <div class="filters flex">
 	<p class="dark-blue">{{ __('product/index.order') }}</p>
-	<a href="{{ route('product.sortPrice') }}" class="filter-btn">
+	<a href="{{ route('product.sort', ['price', 'asc']) }}" class="filter-btn">
 		{!! __('product/index.sortPrice') !!}
 	</a>
-	<a href="{{ route('product.sortName') }}" class="filter-btn">
+	<a href="{{ route('product.sort', ['name', 'asc']) }}" class="filter-btn">
 		{!! __('product/index.sortName') !!}
 	</a>
-	<a href="{{ route('product.sortInventory') }}" class="filter-btn">
+	<a href="{{ route('product.sort', ['inventory', 'desc']) }}" class="filter-btn">
 		{!! __('product/index.sortInventory') !!}
 	</a>
-	<a href="{{ route('product.sortRecentlyAdded') }}" class="filter-btn">
+	<a href="{{ route('product.sort', ['created_at', 'desc']) }}" class="filter-btn">
 		{{ __('product/index.sortRecent') }}
 	</a>
 </div>
@@ -57,7 +57,7 @@
 				<p class="yellow">{{ $product->getName() }}</p>
 				<p class="white">{{ __('product/index.currency') }}{{ $product->getDollarPrice() }}</p>
 			</div>
-			<a href="{{ route('product.show', $product->getId()) }}" class="gray-bg dark-blue btn">{{ __('product/index.shop') }}</a>
+			<a href="{{ route('product.show', $product->getId()) }}" class="gray-bg dark-blue btn">{{ __('product/index.details') }}</a>
 		</div>
 	</div>
 	@empty
