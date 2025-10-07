@@ -73,6 +73,16 @@ class Notification extends Model
         $this->attributes['quantity'] = $quantity;
     }
 
+    public function getCreatedAt(): string
+    {
+        return $this->attributes['created_at'];
+    }
+
+    public function getUpdatedAt(): string
+    {
+        return $this->attributes['updated_at'];
+    }
+
     // Relationships
 
     public function product(): BelongsTo
