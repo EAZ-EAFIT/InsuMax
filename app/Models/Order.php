@@ -47,6 +47,11 @@ class Order extends Model
         return $this->attributes['total'];
     }
 
+    public function setTotal(int $total): void
+    {
+        $this->attributes['total'] = $total;
+    }
+
     public function getDollarTotal(): float
     {
         return $this->attributes['total'] / 100;
@@ -55,6 +60,11 @@ class Order extends Model
     public function getHasShipped(): bool
     {
         return $this->attributes['hasShipped'];
+    }
+
+    public function setHasShipped(bool $hasShipped): void
+    {
+        $this->attributes['hasShipped'] = $hasShipped;
     }
 
     public function getCreatedAt(): string
@@ -67,24 +77,16 @@ class Order extends Model
         return $this->attributes['updated_at'];
     }
 
+    // Relations
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function getUser(): User
     {
         return $this->user;
-    }
-
-    public function getItems(): Collection
-    {
-        return $this->items;
-    }
-
-    public function setTotal(int $total): void
-    {
-        $this->attributes['total'] = $total;
-    }
-
-    public function setHasShipped(bool $hasShipped): void
-    {
-        $this->attributes['hasShipped'] = $hasShipped;
     }
 
     public function setUser(User $user): void
@@ -92,24 +94,18 @@ class Order extends Model
         $this->user = $user;
     }
 
-    public function setItems(Collection $items): void
-    {
-        $this->items()->saveMany($items);
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
     }
 
-    public function cancelOrder(): void
+    public function getItems(): Collection
     {
-        $this->setHasShipped(false);
-        $this->save();
+        return $this->items;
+    }
+
+    public function setItems(Collection $items): void
+    {
+        $this->items()->saveMany($items);
     }
 }

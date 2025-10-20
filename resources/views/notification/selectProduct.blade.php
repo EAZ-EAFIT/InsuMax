@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('styles')
-<link rel="stylesheet" href="{{ asset('/css/notification/create.css') }}">
+<link rel="stylesheet" href="{{ asset('/css/notification/selectProduct.css') }}">
 @endsection
 @section('title', __('notification/create.title'))
 @section('content')
@@ -38,7 +38,7 @@
 
     <div class="grid">
       @forelse ($viewData['products'] as $product)
-      <a href="{{ route('notification.set', $product->getId()) }}" class="light-blue flex column center">
+      <a href="{{ route('notification.setDetails', $product->getId()) }}" class="light-blue flex column center">
         <img src="{{ $product->getImage() }}" alt="{{ $product->getName() }}">
         <p>{{ $product->getName() }}</p>
       </a>

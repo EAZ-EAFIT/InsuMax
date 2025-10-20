@@ -9,10 +9,10 @@ return [
     'order' => 'Order by:',
     'sortPrice' => 'Price &uarr;',
     'sortName' => 'Name &darr;',
-    'sortInventory' => 'Stock &darr;',
+    'sortInventory' => 'Inventory &darr;',
     'sortRecent' => 'Recently added',
     'placeholder' => 'Search a product',
-    'shop' => 'Shop',
+    'details' => 'Details',
     'currency' => '$',
     'empty' => 'No products were found',
 ];

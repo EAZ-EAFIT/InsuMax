@@ -43,9 +43,8 @@ class Utils
         return $priceInCents / 100;
     }
 
-    public static function updateBalance(int $currentBalance, int $amount): int
+    public static function calculateBalance(int $currentBalance, int $amount): int
     {
-
         if ($currentBalance - $amount < 0) {
             return -1;
         }

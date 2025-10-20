@@ -29,6 +29,7 @@ class Product extends Model
      * $this->attributes['updated_at'] - timestamp - contains the product update date
      * $this->items - Item[] - contains the associated items
      * $this->wishlists - Wishlist[] - contains the associated wishlists
+     * $this->notifications - Notification[] - contains the associated notifications
      */
     protected $fillable = ['name', 'description', 'keywords', 'image', 'inventory', 'price'];
 
@@ -123,6 +124,8 @@ class Product extends Model
         return $this->attributes['updated_at'];
     }
 
+    // Relations
+
     public function items(): HasMany
     {
         return $this->hasMany(Item::class);
@@ -151,5 +154,20 @@ class Product extends Model
     public function setWishlists($wishlists): void
     {
         $this->wishlists()->sync($wishlists->pluck('id')->toArray());
+    }
+
+    public function notifications(): HasMany
+    {
+        return $this->hasMany(Notification::class);
+    }
+
+    public function getNotifications(): Collection
+    {
+        return $this->notifications;
+    }
+
+    public function setNotifications(Collection $notifications): void
+    {
+        $this->notifications = $notifications;
     }
 }

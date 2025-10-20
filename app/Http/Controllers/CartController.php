@@ -74,7 +74,7 @@ class CartController extends Controller
             $productsInCart = Product::findMany(array_keys($productsInSession));
             $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
 
-            $newBalance = Utils::updateBalance($user->getBalance(), $total);
+            $newBalance = Utils::calculateBalance($user->getBalance(), $total);
             if ($newBalance < 0) {
                 return back()->with('error', __('messages.checkoutError'));
             }
