@@ -149,7 +149,7 @@ class User extends Authenticatable
         return $this->attributes['updated_at'];
     }
 
-    // Relationships
+    // Relations
 
     public function orders(): HasMany
     {

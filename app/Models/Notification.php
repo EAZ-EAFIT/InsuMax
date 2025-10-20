@@ -83,7 +83,7 @@ class Notification extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relationships
+    // Relations
 
     public function product(): BelongsTo
     {

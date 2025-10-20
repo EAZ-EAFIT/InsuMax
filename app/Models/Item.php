@@ -74,7 +74,7 @@ class Item extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relationships
+    // Relations
 
     public function order(): BelongsTo
     {

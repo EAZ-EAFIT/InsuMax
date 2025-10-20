@@ -124,7 +124,7 @@ class Product extends Model
         return $this->attributes['updated_at'];
     }
 
-    // Relationships
+    // Relations
 
     public function items(): HasMany
     {
