@@ -2,6 +2,11 @@ version: '3.9'
 services:
   app:
     build: .
+    command: >
+      bash -c "
+      php artisan key:generate --force &&
+      php artisan storage:link &&
+      apache2-foreground"
     ports:
       - 80:80
     environment:
