@@ -17,7 +17,7 @@ class HomeController extends Controller
     public function index(): View|RedirectResponse
     {
         if (Auth::check()){
-            return redirect()->route('product.index');
+            return redirect()->route('product.index')  ;
         }
 
         return view('home.index');
