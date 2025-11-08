@@ -4,17 +4,17 @@ services:
     image: eaz3/insumax:latest
     labels:
       - "com.centurylinklabs.watchtower.enable=true"
-    command: >
-      bash -c "
-      php artisan key:generate --force &&
-      php artisan storage:link &&
-      apache2-foreground"
+    command: apache2-foreground
     ports:
       - 80:80
     environment:
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./storage:/var/www/html/storage
+      - ./bootstrap/cache:/var/www/html/bootstrap/cache
+      - ./.env:/var/www/html/.env
 
     depends_on:
       - db
