@@ -20,7 +20,7 @@ class ProductCollection extends ResourceCollection
             }),
             'additionalData' => [
                 'storeName' => 'InsuMax',
-                'storeProductsLink' => 'http://127.0.0.1:8000/products',
+                'storeProductsLink' => 'http://insumax.zone.id/products',
             ],
         ];
     }
