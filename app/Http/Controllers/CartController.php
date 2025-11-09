@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\Product;
-use App\Utils\Utils;
+use App\Utils\FinancialUtils;
+use App\Utils\InventoryUtils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,12 +22,12 @@ class CartController extends Controller
         $productsInSession = $request->session()->get('products');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
+            $total = FinancialUtils::sumPricesByQuantities($productsInCart, $productsInSession);
         }
 
         $viewData = [];
         $viewData['products'] = $productsInCart;
-        $viewData['total'] = Utils::convertToDollars($total);
+        $viewData['total'] = FinancialUtils::convertToDollars($total);
 
         return view('cart.index')->with('viewData', $viewData);
     }
@@ -36,9 +37,9 @@ class CartController extends Controller
         $products = $request->session()->get('products');
 
         if (! isset($products) || ! array_key_exists($id, $products) || $products[$id] == 0) {
-            $products[$id] = Utils::validateCartProductQuantity($request, $id);
+            $products[$id] = InventoryUtils::validateCartProductQuantity($request, $id);
         } else {
-            $additionalQuantity = Utils::validateCartProductQuantity($request, $id);
+            $additionalQuantity = InventoryUtils::validateCartProductQuantity($request, $id);
             $products[$id] = $products[$id] + $additionalQuantity;
         }
 
@@ -72,11 +73,16 @@ class CartController extends Controller
         $productsInSession = $request->session()->get('products');
         if ($productsInSession) {
             $productsInCart = Product::findMany(array_keys($productsInSession));
-            $total = Utils::sumPricesByQuantities($productsInCart, $productsInSession);
+            $total = FinancialUtils::sumPricesByQuantities($productsInCart, $productsInSession);
 
-            $newBalance = Utils::calculateBalance($user->getBalance(), $total);
+            $newBalance = FinancialUtils::calculateBalance($user->getBalance(), $total);
             if ($newBalance < 0) {
                 return back()->with('error', __('messages.checkoutError'));
+            }
+
+            $availableInventory = InventoryUtils::validateInventoryBeforeCheckout($request, $productsInCart, $productsInSession);
+            if (! $availableInventory) {
+                return back()->with('error', __('messages.insufficientInventory'));
             }
 
             $order = Order::create([
@@ -92,7 +98,7 @@ class CartController extends Controller
                     'quantity' => $productsInSession[$product->getId()],
                     'price' => $product->getPrice(),
                 ]);
-                Utils::updateProductInventory($request, $product->getId());
+                InventoryUtils::updateProductInventory($request, $product->getId());
             }
 
             $user->setBalance($newBalance);

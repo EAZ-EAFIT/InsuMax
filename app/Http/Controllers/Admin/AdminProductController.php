@@ -10,7 +10,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
-use App\Utils\Utils;
+use App\Utils\StringUtils;
+use App\Utils\ImageUtils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -37,7 +38,7 @@ class AdminProductController extends Controller
         $newProduct = Product::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'keywords' => Utils::processKeywords($request->input('keywords')),
+            'keywords' => StringUtils::processKeywords($request->input('keywords')),
             'image' => 'none',
             'inventory' => $request->input('inventory'),
             'price' => $request->input('price'),
@@ -72,7 +73,7 @@ class AdminProductController extends Controller
         $product->setName($request->input('name'));
         $product->setDescription($request->input('description'));
         $product->setKeywords($request->input('keywords'));
-        Utils::storeImage($request, $product);
+        ImageUtils::storeImage($request, $product);
         $product->setInventory($request->input('inventory'));
         $product->setPrice($request->input('price'));
         $product->save();
