@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Utils\Utils;
+use App\Interfaces\ProductSearch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -43,9 +44,10 @@ class ProductController extends Controller
     public function search(Request $request): View
     {
         $search = $request->input('query');
+        $nlp = $request->input('nlp');
 
         $viewData = [];
-        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->paginate(18);
+        $viewData['products'] = app(ProductSearch::class, ['type' => $nlp])->search($search);
 
         return view('product.index')->with('viewData', $viewData);
     }
