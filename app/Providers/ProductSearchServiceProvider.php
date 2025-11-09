@@ -9,7 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class ProductSearchServiceProvider extends ServiceProvider
 {
-    public function register()
+    public function register(): void
     {
         $this->app->bind(ProductSearch::class, function($app, $params) {
             if ($params['type']) {

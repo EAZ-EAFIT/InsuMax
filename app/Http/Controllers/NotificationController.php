@@ -41,9 +41,10 @@ class NotificationController extends Controller
     public function search(Request $request): View
     {
         $search = $request->input('query');
+        $naturalLanguageProcessing = $request->input('naturalLanguageProcessing', false);
 
         $viewData = [];
-        $viewData['products'] = app(ProductSearch::class)->search($search);
+        $viewData['products'] = app(ProductSearch::class, ['type' => $naturalLanguageProcessing])->search($search);
 
         return view('notification.selectProduct')->with('viewData', $viewData);
     }

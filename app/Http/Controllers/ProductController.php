@@ -44,10 +44,10 @@ class ProductController extends Controller
     public function search(Request $request): View
     {
         $search = $request->input('query');
-        $nlp = $request->input('nlp');
+        $naturalLanguageProcessing = $request->input('naturalLanguageProcessing', false);
 
         $viewData = [];
-        $viewData['products'] = app(ProductSearch::class, ['type' => $nlp])->search($search);
+        $viewData['products'] = app(ProductSearch::class, ['type' => $naturalLanguageProcessing])->search($search);
 
         return view('product.index')->with('viewData', $viewData);
     }

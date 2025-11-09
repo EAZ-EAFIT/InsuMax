@@ -35,18 +35,18 @@ class HuggingFaceVectorSearch implements ProductSearch
             ],
         ]);
 
-        $scores = $response->json();
-        $filtered = collect($productIds)
-            ->combine($scores)
-            ->filter(fn($s) => $s > 0.2)
+        $jsonResponse = $response->json();
+        $orderedFilteredResponse = collect($productIds)
+            ->combine($jsonResponse)
+            ->filter(fn($similarity) => $similarity > 0.2)
             ->sortDesc()
             ->take(6);
 
-        $ranked = $filtered->keys();
-        $products = Product::whereIn('id', $ranked)->get()
-            ->sortBy(fn($p) => $ranked->search($p->id))
+        $rankedIdArray = $orderedFilteredResponse->keys();
+        $similarProducts = Product::whereIn('id', $rankedIdArray)->get()
+            ->sortBy(fn($product) => $rankedIdArray->search($product->getId()))
             ->values();
 
-        return new LengthAwarePaginator($products, $products->count(), 6, 1);
+        return new LengthAwarePaginator($similarProducts, $similarProducts->count(), 6, 1);
     }
 }

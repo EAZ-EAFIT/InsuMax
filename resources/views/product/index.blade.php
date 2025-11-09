@@ -28,7 +28,7 @@
 		</svg>
 		<input type="text" name="query" placeholder="{{ __('product/index.placeholder') }}">
 		<label style="display:flex; align-items:center; gap:4px;">
-			<input type="checkbox" name="nlp" value="1">
+			<input type="checkbox" name="naturalLanguageProcessing" value="1">
 			<span>{{ __('product/index.search') }}</span>
 		</label>
 	</form>
