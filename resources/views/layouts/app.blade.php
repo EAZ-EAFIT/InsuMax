@@ -96,8 +96,9 @@
 
   <footer class="light-blue-bg white flex center">
     <small>{!! __('layout/app.footer') !!}</small>
-    <a href="{{ route('lang.switch', 'en') }}">English</a> |
-    <a href="{{ route('lang.switch', 'es') }}">Español</a>
+    <a href="{{ route('lang.switch', 'en') }}">{{ __('layout/app.english') }}</a>
+    <span>{{ __('layout/app.divider') }}</span>
+    <a href="{{ route('lang.switch', 'es') }}">{{ __('layout/app.spanish') }}</a>
   </footer>
 
   <script src="{{ asset('/js/layout/hamburguer-menu.js') }}"></script>

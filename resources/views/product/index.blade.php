@@ -27,7 +27,7 @@
 			<path d="M36.75 36.75L29.1375 29.1375" stroke="#A35139" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
 		<input type="text" name="query" placeholder="{{ __('product/index.placeholder') }}">
-		<label style="display:flex; align-items:center; gap:4px;">
+		<label class="pro-search flex center">
 			<input type="checkbox" name="naturalLanguageProcessing" value="1">
 			<span>{{ __('product/index.search') }}</span>
 		</label>

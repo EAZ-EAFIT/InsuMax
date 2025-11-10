@@ -50,6 +50,7 @@ header {
   width: 230px;
   height: 40px;
   border-radius: 10px;
+  position: relative;
 }
 
 .search-box svg {
@@ -73,6 +74,19 @@ header {
 
 .search-box input:focus {
   outline: none;
+}
+
+.pro-search {
+  position: absolute;
+  left: 100%;
+  margin-left: 10px;
+  color: var(--dark-blue);
+  gap: 10px;
+  padding: 4px;
+}
+
+.pro-search span {
+  text-wrap: nowrap;
 }
 
 .filters {

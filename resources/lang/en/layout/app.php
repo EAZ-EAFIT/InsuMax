@@ -10,4 +10,7 @@ return [
     'register' => 'Register',
     'logout' => 'Log Out',
     'footer' => 'Copyright &middot; Sanentur Technologies &reg;',
+    'english' => 'English',
+    'divider' => '|',
+    'spanish' => 'Español',
 ];

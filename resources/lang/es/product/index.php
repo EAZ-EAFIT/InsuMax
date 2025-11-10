@@ -12,7 +12,7 @@ return [
     'sortInventory' => 'Inventario &darr;',
     'sortRecent' => 'Agregados recientemente',
     'placeholder' => 'Buscar un producto',
-    'search' => 'Busqueda Avanzada',
+    'search' => 'Búsqueda Avanzada',
     'details' => 'Detalles',
     'currency' => '$',
     'empty' => 'No se encontró ningún producto',

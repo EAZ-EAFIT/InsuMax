@@ -5,7 +5,9 @@ setTimeout(() => {
 
     const intervalId = setInterval(() => {
         opacity -= 0.1;
-        banner.style.opacity = opacity;
+        if (banner){
+            banner.style.opacity = opacity;
+        }
 
         if (opacity <= 0) {
             clearInterval(intervalId);
