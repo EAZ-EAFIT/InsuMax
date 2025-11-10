@@ -11,7 +11,6 @@ namespace App\Http\Controllers;
 use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
-use App\Interfaces\ProductSearch;
 use App\Utils\NotificationUtils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
