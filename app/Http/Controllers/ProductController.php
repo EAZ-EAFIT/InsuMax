@@ -12,7 +12,6 @@ use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Utils\NotificationUtils;
-use App\Interfaces\ProductSearch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
