@@ -10,7 +10,7 @@
 
 	<form method="POST" action="{{ route('register') }}" class="form-container flex column">
 		@csrf
-		<label for="name" class="white">{{ __('Name') }}</label>
+		<label for="name" class="white">{{ __('auth/register.name') }}</label>
 
 		<input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
@@ -20,7 +20,7 @@
 		</span>
 		@enderror
 
-		<label for="address" class="white">{{ __('Address') }}</label>
+		<label for="address" class="white">{{ __('auth/register.address') }}</label>
 
 		<input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" required autocomplete="address" autofocus>
 
@@ -30,7 +30,7 @@
 		</span>
 		@enderror
 
-		<label for="email" class="white">{{ __('Email Address') }}</label>
+		<label for="email" class="white">{{ __('auth/register.email') }}</label>
 
 		<input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
@@ -40,7 +40,7 @@
 		</span>
 		@enderror
 
-		<label for="password" class="white">{{ __('Password') }}</label>
+		<label for="password" class="white">{{ __('auth/register.password') }}</label>
 
 		<input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
@@ -52,12 +52,12 @@
 		</div>
 		</div>
 
-		<label for="password-confirm" class="white">{{ __('Confirm Password') }}</label>
+		<label for="password-confirm" class="white">{{ __('auth/register.confirm') }}</label>
 
 		<input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
 
 		<button type="submit" class="register-btn brown-bg white">
-			{{ __('Register') }}
+			{{ __('auth/register.register') }}
 		</button>
 	</form>
 

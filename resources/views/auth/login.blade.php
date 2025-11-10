@@ -10,7 +10,7 @@
 
   <form method="POST" action="{{ route('login') }}" class="form-container flex column">
     @csrf
-    <label for="email" class="white">{{ __('Email Address') }}</label>
+    <label for="email" class="white">{{ __('auth/login.email') }}</label>
 
     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
@@ -20,7 +20,7 @@
     </span>
     @enderror
 
-    <label for="password" class="white">{{ __('Password') }}</label>
+    <label for="password" class="white">{{ __('auth/login.password') }}</label>
 
     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
@@ -34,17 +34,17 @@
       <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
       <label class="white form-check-label" for="remember">
-        {{ __('Remember Me') }}
+        {{ __('auth/login.remember') }}
       </label>
     </div>
 
     <button type="submit" class="login-btn brown-bg white">
-      {{ __('Login') }}
+      {{ __('auth/login.login') }}
     </button>
 
     @if (Route::has('password.request'))
     <a class="forgot-pwd white" href="{{ route('password.request') }}">
-      {{ __('Forgot Your Password?') }}
+      {{ __('auth/login.forgotPassword') }}
     </a>
     @endif
   </form>

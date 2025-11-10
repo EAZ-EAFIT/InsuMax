@@ -99,6 +99,9 @@
     <nav class="footer-links">
       <a href="{{ route('allied.index') }}" class="white" style="margin-left:16px;">{{ __('layout/app.allied_products') }}</a>
     </nav>
+    <a href="{{ route('lang.switch', 'en') }}">{{ __('layout/app.english') }}</a>
+    <span>{{ __('layout/app.divider') }}</span>
+    <a href="{{ route('lang.switch', 'es') }}">{{ __('layout/app.spanish') }}</a>
   </footer>
 
   <script src="{{ asset('/js/layout/hamburguer-menu.js') }}"></script>

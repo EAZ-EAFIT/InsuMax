@@ -11,4 +11,7 @@ return [
     'logout' => 'Log Out',
     'footer' => 'Copyright &middot; Sanentur Technologies &reg;',
     'allied_products' => 'Allied Products',
+    'english' => 'English',
+    'divider' => '|',
+    'spanish' => 'Español',
 ];
