@@ -18,13 +18,9 @@ class AlliedProductController extends Controller
         $viewData = [];
         $viewData['alliedProducts'] = [];
 
-        try {
-            $response = Http::timeout(5)->get('http://cellhub.store/api/mobilePhones');
-            if ($response->ok()) {
-                $viewData['alliedProducts'] = $response->json('data', []);
-            }
-        } catch (\Throwable $e) {
-
+        $response = Http::timeout(5)->get('http://cellhub.store/api/mobilePhones');
+        if ($response->ok()) {
+            $viewData['alliedProducts'] = $response->json('data', []);
         }
 
         return view('allied.index')->with('viewData', $viewData);

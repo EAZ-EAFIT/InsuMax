@@ -41,7 +41,7 @@ Route::post('/cart/add/{id}', $CART_CONTROLLER_PATH.'@add')->name('cart.add');
 Route::get('/cart/remove/{id}', $CART_CONTROLLER_PATH.'@remove')->name('cart.remove');
 Route::get('/cart/removeAll', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
 
-Route::get('/allied-products', $ALLIED_CONTROLLER_PATH.'@index')->name('allied.index');
+Route::get('/allied-products', $ALLIED_PRODUCT_CONTROLLER_PATH.'@index')->name('allied.index');
 
 Route::middleware('auth')->group(function () {
     $CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';
