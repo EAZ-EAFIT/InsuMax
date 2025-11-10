@@ -13,7 +13,7 @@ RUN composer install \
     --no-plugins \
     --no-scripts \
     --prefer-dist
-    
+
 RUN php artisan storage:link || true
 RUN chmod -R 777 storage
 RUN a2enmod rewrite
