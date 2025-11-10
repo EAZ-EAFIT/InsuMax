@@ -220,6 +220,15 @@ footer {
   a svg {
     height: 16px;
   }
+
+  .footer-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-content small {
+    order: 3;
+  }
 }
 
 @media (max-width: 480px) {
