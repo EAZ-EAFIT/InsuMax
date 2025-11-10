@@ -8,9 +8,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
-use App\Interfaces\ProductSearch;
 use App\Utils\Utils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -44,7 +44,7 @@ class NotificationController extends Controller
         $naturalLanguageProcessing = $request->input('naturalLanguageProcessing', false);
 
         $viewData = [];
-        $viewData['products'] = app(ProductSearch::class, ['type' => $naturalLanguageProcessing])->search($search);
+        $viewData['products'] = app(ProductSearch::class, ['type' => $naturalLanguageProcessing])->search($search, 9);
 
         return view('notification.selectProduct')->with('viewData', $viewData);
     }

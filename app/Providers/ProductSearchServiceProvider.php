@@ -11,11 +11,12 @@ class ProductSearchServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        $this->app->bind(ProductSearch::class, function($app, $params) {
+        $this->app->bind(ProductSearch::class, function ($app, $params) {
             if ($params['type']) {
-                return new HuggingFaceVectorSearch();
+                return new HuggingFaceVectorSearch;
             }
-            return new BaseSearch();
+
+            return new BaseSearch;
         });
     }
 }
