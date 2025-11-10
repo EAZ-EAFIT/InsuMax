@@ -8,9 +8,9 @@ use Illuminate\Pagination\LengthAwarePaginator;
 
 class BaseSearch implements ProductSearch
 {
-    public function search(string $searchString, int $perPage): LengthAwarePaginator
+    public function search(string $searchString, int $productsPerPage): LengthAwarePaginator
     {
-        $searchResults = Product::where('name', 'like', '%'.$searchString.'%')->orWhere('keywords', 'like', '%'.$searchString.'%')->paginate($perPage);
+        $searchResults = Product::where('name', 'like', '%'.$searchString.'%')->orWhere('keywords', 'like', '%'.$searchString.'%')->paginate($productsPerPage);
 
         return $searchResults;
     }

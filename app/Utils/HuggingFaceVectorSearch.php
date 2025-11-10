@@ -11,7 +11,7 @@ $SIMILARITY_THRESHOLD = 0.2;
 
 class HuggingFaceVectorSearch implements ProductSearch
 {
-    public function search(string $query, int $perPage = 6): LengthAwarePaginator
+    public function search(string $query, int $productsPerPage): LengthAwarePaginator
     {
 
         $products = Product::all(['id', 'description']);
@@ -42,6 +42,6 @@ class HuggingFaceVectorSearch implements ProductSearch
             ->sortBy(fn ($product) => $rankedIdArray->search($product->getId()))
             ->values();
 
-        return new LengthAwarePaginator($similarProducts, $similarProducts->count(), $perPage, 1);
+        return new LengthAwarePaginator($similarProducts, $similarProducts->count(), $productsPerPage, 1);
     }
 }
