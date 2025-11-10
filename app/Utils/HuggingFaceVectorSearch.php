@@ -7,13 +7,12 @@ use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Http;
 
-$SIMILARITY_THRESHOLD = 0.2;
 
 class HuggingFaceVectorSearch implements ProductSearch
 {
     public function search(string $query, int $productsPerPage): LengthAwarePaginator
     {
-
+        $SIMILARITY_THRESHOLD = 0.2;
         $products = Product::all(['id', 'description']);
         $productIds = $products->pluck('id')->toArray();
         $productDescriptions = $products->pluck('description')->toArray();
