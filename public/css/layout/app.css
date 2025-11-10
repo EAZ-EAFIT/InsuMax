@@ -94,6 +94,21 @@ footer {
   padding: 30px 0;
 }
 
+.footer-content {
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footer-content a,
+.footer-content span {
+  font-size: 16px;
+}
+
+.footer-content div {
+  gap: 5px;
+}
+
 @media (max-width: 1024px) {
   .logo {
     font-size: 30px;

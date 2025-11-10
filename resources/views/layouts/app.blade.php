@@ -95,13 +95,17 @@
   </main>
 
   <footer class="light-blue-bg white flex center">
-    <small>{!! __('layout/app.footer') !!}</small>
-    <nav class="footer-links">
-      <a href="{{ route('allied.index') }}" class="white" style="margin-left:16px;">{{ __('layout/app.allied_products') }}</a>
-    </nav>
-    <a href="{{ route('lang.switch', 'en') }}">{{ __('layout/app.english') }}</a>
-    <span>{{ __('layout/app.divider') }}</span>
-    <a href="{{ route('lang.switch', 'es') }}">{{ __('layout/app.spanish') }}</a>
+    <div class="footer-content flex">
+      <small>{!! __('layout/app.footer') !!}</small>
+      <nav class="footer-links">
+        <a href="{{ route('allied.index') }}" class="white" style="margin-left:16px;">{{ __('layout/app.allied_products') }}</a>
+      </nav>
+      <div class="flex center">
+        <a href="{{ route('lang.switch', 'en') }}">{{ __('layout/app.english') }}</a>
+        <span>{{ __('layout/app.divider') }}</span>
+        <a href="{{ route('lang.switch', 'es') }}">{{ __('layout/app.spanish') }}</a>
+      </div>
+    </div>
   </footer>
 
   <script src="{{ asset('/js/layout/hamburguer-menu.js') }}"></script>
