@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
 {
-    public function test_set_name_and_get_name()
+    public function testSetNameAndGetName(): void
     {
         $product = new Product;
 
@@ -15,7 +15,7 @@ class ProductTest extends TestCase
         $this->assertEquals('Laptop', $product->getName());
     }
 
-    public function test_set_price_and_get_price()
+    public function testSetPriceAndGetPrice(): void
     {
         $product = new Product;
 

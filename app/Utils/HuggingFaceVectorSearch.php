@@ -4,49 +4,42 @@ namespace App\Utils;
 
 use App\Interfaces\ProductSearch;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Http;
 
 class HuggingFaceVectorSearch implements ProductSearch
 {
-    private function productRankPosition($product, $ranked)
+    public function search(string $query, int $productsPerPage): LengthAwarePaginator
     {
-        return $ranked->search($product->id);
-    }
-
-    public function search(String $query): LengthAwarePaginator {
-
+        $SIMILARITY_THRESHOLD = 0.2;
         $products = Product::all(['id', 'description']);
-        $productIds   = $products->pluck('id')->toArray();
-        $productTexts = $products->pluck('description')->toArray();
+        $productIds = $products->pluck('id')->toArray();
+        $productDescriptions = $products->pluck('description')->toArray();
 
         $apiKey = env('HUGGINGFACE_API_KEY');
-        $model = 'sentence-transformers/all-MiniLM-L6-v2';
+        $model = env('HUGGINGFACE_MODEL');
 
         $response = Http::withHeaders([
-            'Authorization' => 'Bearer ' . $apiKey,
-            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer '.$apiKey,
+            'Content-Type' => 'application/json',
         ])->post("https://router.huggingface.co/hf-inference/models/{$model}/pipeline/sentence-similarity", [
             'inputs' => [
                 'source_sentence' => $query,
-                'sentences' => $productTexts,
+                'sentences' => $productDescriptions,
             ],
         ]);
 
         $jsonResponse = $response->json();
         $orderedFilteredResponse = collect($productIds)
             ->combine($jsonResponse)
-            ->filter(fn($similarity) => $similarity > 0.2)
-            ->sortDesc()
-            ->take(6);
+            ->filter(fn ($similarity) => $similarity > $SIMILARITY_THRESHOLD)
+            ->sortDesc();
 
         $rankedIdArray = $orderedFilteredResponse->keys();
         $similarProducts = Product::whereIn('id', $rankedIdArray)->get()
-            ->sortBy(fn($product) => $rankedIdArray->search($product->getId()))
+            ->sortBy(fn ($product) => $rankedIdArray->search($product->getId()))
             ->values();
 
-        return new LengthAwarePaginator($similarProducts, $similarProducts->count(), 6, 1);
+        return new LengthAwarePaginator($similarProducts, $similarProducts->count(), $productsPerPage, 1);
     }
 }

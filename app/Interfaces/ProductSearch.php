@@ -2,10 +2,9 @@
 
 namespace App\Interfaces;
 
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface ProductSearch
 {
-    public function search(String $searchString): LengthAwarePaginator;
+    public function search(string $searchString, int $productsPerPage): LengthAwarePaginator;
 }
