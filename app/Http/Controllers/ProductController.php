@@ -12,8 +12,10 @@ use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Utils\NotificationUtils;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -41,7 +43,7 @@ class ProductController extends Controller
         return view('product.show')->with('viewData', $viewData);
     }
 
-    public function search(Request $request): View
+    public function search(Request $request): View|RedirectResponse
     {
         $search = $request->input('query');
 

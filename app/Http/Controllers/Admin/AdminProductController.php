@@ -44,7 +44,7 @@ class AdminProductController extends Controller
             'price' => $request->input('price'),
         ]);
 
-        Utils::storeImage($request, $newProduct);
+        ImageUtils::storeImage($request, $newProduct);
 
         return redirect()->route('admin.product.index');
     }

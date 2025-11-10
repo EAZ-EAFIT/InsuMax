@@ -15,6 +15,7 @@ use App\Utils\NotificationUtils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class NotificationController extends Controller
@@ -38,7 +39,7 @@ class NotificationController extends Controller
         return view('notification.selectProduct')->with('viewData', $viewData);
     }
 
-    public function searchProduct(Request $request): View
+    public function searchProduct(Request $request): View|RedirectResponse
     {
         $search = $request->input('query');
 
