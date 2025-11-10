@@ -10,4 +10,5 @@ return [
     'register' => 'Register',
     'logout' => 'Log Out',
     'footer' => 'Copyright &middot; Sanentur Technologies &reg;',
+    'allied_products' => 'Allied Products',
 ];
