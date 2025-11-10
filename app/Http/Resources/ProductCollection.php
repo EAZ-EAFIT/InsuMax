@@ -16,6 +16,7 @@ class ProductCollection extends ResourceCollection
                     'name' => $product->getName(),
                     'description' => $product->getDescription(),
                     'price' => $product->getPrice(),
+                    'image' => 'http://insumax.zone.id'.$product->getImage(),
                 ];
             }),
             'additionalData' => [
