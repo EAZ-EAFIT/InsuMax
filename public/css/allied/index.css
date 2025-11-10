@@ -1,0 +1,23 @@
+header {
+    margin-bottom: 50px;
+}
+
+main {
+    padding-left: 50px;
+}
+
+.product-card {
+    height: auto;
+}
+
+.link {
+    background-color: var(--gray);
+    color: var(--dark-blue);
+    padding: 10px;
+    border-radius: 10px;
+    align-self: center;
+}
+
+footer {
+    margin-top: 50px;
+}
