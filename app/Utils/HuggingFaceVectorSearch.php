@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Http;
 
-
 class HuggingFaceVectorSearch implements ProductSearch
 {
     public function search(string $query, int $productsPerPage): LengthAwarePaginator
