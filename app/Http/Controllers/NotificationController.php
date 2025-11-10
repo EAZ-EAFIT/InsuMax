@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
 use App\Utils\Utils;
@@ -40,9 +41,10 @@ class NotificationController extends Controller
     public function searchProduct(Request $request): View
     {
         $search = $request->input('query');
+        $naturalLanguageProcessing = $request->input('naturalLanguageProcessing', false);
 
         $viewData = [];
-        $viewData['products'] = Product::where('name', 'like', '%'.$search.'%')->orWhere('keywords', 'like', '%'.$search.'%')->paginate(9);
+        $viewData['products'] = app(ProductSearch::class, ['type' => $naturalLanguageProcessing])->search($search, 9);
 
         return view('notification.selectProduct')->with('viewData', $viewData);
     }

@@ -12,6 +12,7 @@ return [
     'sortInventory' => 'Inventory &darr;',
     'sortRecent' => 'Recently added',
     'placeholder' => 'Search a product',
+    'search' => 'Pro Search',
     'details' => 'Details',
     'currency' => '$',
     'empty' => 'No products were found',

@@ -34,6 +34,7 @@
         <path d="M36.75 36.75L29.1375 29.1375" stroke="#2C3B4D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       </svg>
       <input type="text" name="query" placeholder="{{ __('notification/create.placeholder') }}">
+      <input type="hidden" name="naturalLanguageProcessing" value="0">
     </form>
 
     <div class="grid">

@@ -20,13 +20,17 @@
 
 <div class="search-container flex column">
 	<h1 class="light-blue semibold">{{ __('product/index.subtitle') }}</h1>
-	<form action="{{ route('product.search') }}" method="get" class="search-box white-bg brown flex center">
+	<form action="{{ route('product.search') }}" method="get" class="search-box white-bg brown flex center" style="display:flex; align-items:center; gap:8px;">
 		@csrf
 		<svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-			<path d="M19.25 33.25C26.982 33.25 33.25 26.982 33.25 19.25C33.25 11.518 26.982 5.25 19.25 5.25C11.518 5.25 5.25 11.518 5.25 19.25C5.25 26.982 11.518 33.25 19.25 33.25Z" stroke="#A35139" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-			<path d="M36.75 36.75L29.1375 29.1375" stroke="#A35139" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+			<path d="M19.25 33.25C26.982 33.25 33.25 26.982 33.25 19.25C33.25 11.518 26.982 5.25 19.25 5.25C11.518 5.25 5.25 11.518 5.25 19.25C5.25 26.982 11.518 33.25 19.25 33.25Z" stroke="#A35139" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+			<path d="M36.75 36.75L29.1375 29.1375" stroke="#A35139" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
 		</svg>
 		<input type="text" name="query" placeholder="{{ __('product/index.placeholder') }}">
+		<label style="display:flex; align-items:center; gap:4px;">
+			<input type="checkbox" name="naturalLanguageProcessing" value="1">
+			<span>{{ __('product/index.search') }}</span>
+		</label>
 	</form>
 </div>
 
