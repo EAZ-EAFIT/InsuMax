@@ -11,7 +11,8 @@ namespace App\Http\Controllers;
 use App\Interfaces\ProductSearch;
 use App\Models\Notification;
 use App\Models\Product;
-use App\Utils\Utils;
+use App\Interfaces\ProductSearch;
+use App\Utils\NotificationUtils;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +23,7 @@ class NotificationController extends Controller
     public function index(): View
     {
         $notifications = Notification::where('user_id', Auth::user()->getId())->get();
-        Utils::updateNotificationsDate($notifications);
+        NotificationUtils::updateNotificationsDate($notifications);
 
         $viewData = [];
         $viewData['notifications'] = Notification::with('product')->where('user_id', Auth::user()->getId())->get();
