@@ -14,6 +14,7 @@ $PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\ProductController';
 $ORDER_CONTROLLER_PATH = 'App\Http\Controllers\OrderController';
 $CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';
 $LANGUAGE_CONTROLLER_PATH = 'App\Http\Controllers\LanguageController';
+$ALLIED_PRODUCT_CONTROLLER_PATH = 'App\Http\Controllers\AlliedProductController';
 
 Route::get('/', $HOME_CONTROLLER_PATH.'@index')->name('home.index');
 
@@ -42,6 +43,8 @@ Route::get('/cart/remove/{id}', $CART_CONTROLLER_PATH.'@remove')->name('cart.rem
 Route::get('/cart/removeAll', $CART_CONTROLLER_PATH.'@removeAll')->name('cart.removeAll');
 
 Route::get('/lang/{locale}', $LANGUAGE_CONTROLLER_PATH.'@switch')->name('lang.switch');
+
+Route::get('/allied-products', $ALLIED_PRODUCT_CONTROLLER_PATH.'@index')->name('allied.index');
 
 Route::middleware('auth')->group(function () {
     $CART_CONTROLLER_PATH = 'App\Http\Controllers\CartController';

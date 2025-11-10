@@ -44,6 +44,11 @@ class ProductController extends Controller
     public function search(Request $request): View
     {
         $search = $request->input('query');
+
+        if (is_null($search) || trim($search) === '') {
+            return redirect()->route('product.index');
+        }
+
         $naturalLanguageProcessing = $request->input('naturalLanguageProcessing', false);
 
         $viewData = [];

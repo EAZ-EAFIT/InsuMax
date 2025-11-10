@@ -10,6 +10,7 @@ return [
     'register' => 'Registrarse',
     'logout' => 'Cerrar Sesión',
     'footer' => 'Copyright &middot; Sanentur Technologies &reg;',
+    'allied_products' => 'Productos Aliados',
     'english' => 'English',
     'divider' => '|',
     'spanish' => 'Español',
