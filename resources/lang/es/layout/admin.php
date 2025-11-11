@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'subtitle' => 'Panel de Administrador',
+    'subtitle' => 'Panel de Admin',
     'home' => 'Inicio',
-    'products' => 'Administrar Productos',
-    'wishlists' => 'Administrar Listas de Deseo',
+    'products' => 'Productos',
+    'wishlists' => 'Listas de Deseo',
     'logout' => 'Cerrar Sesión',
 ];

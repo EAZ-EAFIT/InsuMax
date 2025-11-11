@@ -2,7 +2,7 @@
 
 return [
     'title' => 'Products - InsuMax',
-    'reminder' => 'Remind to buy',
+    'reminder' => 'Remember to buy',
     'in' => 'in',
     'days' => 'day(s).',
     'subtitle' => 'Our products',

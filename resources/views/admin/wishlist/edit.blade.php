@@ -17,11 +17,12 @@
     @endif
   </div>
 
-  <form class="flex column center" action="{{ route('admin.wishlist.update', ['id' => $viewData['wishlist']->getId(), 'userId' => $viewData['wishlist']->getUserId()]) }}" method="POST" enctype="multipart/form-data">
+  <form class="flex column center" action="{{ route('admin.wishlist.update', ['id' => $viewData['wishlist']->getId(), 'userId' => $viewData['wishlist']->getUser()->getId()]) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <label for="name">{{ __('admin/wishlist/create.name') }}</label>
     <input type="text" id="name" name="name" value="{{ $viewData['wishlist']->getName() }}" required>
+    <label for="userId">{{ __('admin/wishlist/create.userId') }}</label>
     <input type="text" id="userId" name="userId" value="{{ $viewData['wishlist']->getUser()->getId() }}" required>
     <button class="btn-dark-blue" type="submit" class="btn btn-primary">
       {{ __('admin/wishlist/edit.submit') }}
