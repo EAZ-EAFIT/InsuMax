@@ -6,11 +6,12 @@ main {
     padding-left: 50px;
 }
 
-.product-card {
-    height: auto;
+.product-link {
+    color: var(--brown);
+    text-decoration: underline;
 }
 
-.link {
+.store-link {
     background-color: var(--gray);
     color: var(--dark-blue);
     padding: 10px;
