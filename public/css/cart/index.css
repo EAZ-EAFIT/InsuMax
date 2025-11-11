@@ -58,8 +58,12 @@ main button {
   gap: 30px;
 }
 
-.checkout-container p {
-  margin: 20px 0;
+.total {
+  margin-top: 20px;
+}
+
+.balance {
+  margin-bottom: 20px;
 }
 
 .btn-checkout {

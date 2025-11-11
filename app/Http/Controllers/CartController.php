@@ -28,6 +28,11 @@ class CartController extends Controller
         $viewData = [];
         $viewData['products'] = $productsInCart;
         $viewData['total'] = FinancialUtils::convertToDollars($total);
+        $viewData['balance'] = 0;
+
+        if (Auth::check()){
+            $viewData['balance'] = Auth::user()->getBalance();
+        }
 
         return view('cart.index')->with('viewData', $viewData);
     }

@@ -40,10 +40,17 @@
   </div>
   @endforeach
   <div class="checkout-container flex column">
-    <p class="light-blue">
+    <p class="light-blue total">
       {{ __('cart/index.total') }}
       <span class="dark-blue semibold">
         {{ __('cart/index.currency') }}{{ $viewData['total'] }}
+      </span>
+    </p>
+
+    <p class="light-blue balance">
+      {{ __('cart/index.balance') }}
+      <span class="dark-blue semibold">
+        {{ __('cart/index.currency') }}{{ $viewData['balance'] }}
       </span>
     </p>
 

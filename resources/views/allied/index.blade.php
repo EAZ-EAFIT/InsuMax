@@ -13,11 +13,15 @@
   <div class="products-container grid">
     @foreach ($viewData['alliedProducts'] as $product)
     <div class="product-card dark-blue-bg">
+      <div class="product-card-img">
+        <img src="{{ $product['image'] }}" alt="{{ $product['name'] }}">
+      </div>
       <div class="product-card-details flex center">
         <div class="product-text flex column">
           <p class="yellow">{{ $product['name'] }}</p>
           <p class="white">{{ __('product/index.currency') }}{{ $product['price'] }}</p>
           <p class="white small">{{ $product['brand'] }}</p>
+          <a href="{{ $product['link'] }}" target="_blank" class="product-link">{{ __('allied/index.productLink') }}</a>
         </div>
       </div>
     </div>
@@ -28,6 +32,6 @@
     <h3>{{ __('allied/index.no_products') }}</h3>
   </div>
   @endif
-  <a href="{{ __('allied/index.storeLink') }}" class="link" target="_blank">{{ __('allied/index.goToStore') }}</a>
+  <a href="{{ __('allied/index.storeLink') }}" class="store-link" target="_blank">{{ __('allied/index.goToStore') }}</a>
 </main>
 @endsection

@@ -9,6 +9,7 @@ return [
     'currency' => '$',
     'removeProduct' => 'Remove',
     'total' => 'Your total:',
+    'balance' => 'Your balance:',
     'checkout' => 'Checkout',
     'removeAllProducts' => 'Remove all products from cart',
     'empty' => 'Your cart is empty',
